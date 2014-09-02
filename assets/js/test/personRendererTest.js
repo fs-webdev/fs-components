@@ -40,6 +40,7 @@ var person2 = {
 };
 
 var noNamePerson = fsModules.extend({}, person, {name: null});
+var nameWithSpacePerson = fsModules.extend({}, person, {name: " "});
 var noIdPerson = fsModules.extend({}, person, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, person, {nameConclusion: null});
 var noPotriatPerson = fsModules.extend({}, person, {portraitUrl: null});
@@ -104,6 +105,20 @@ describe('personRenderer', function () {
       }
       else {
         $template = fsModules.fsPersonVitals(noNamePerson);
+      }
+
+      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+
+      expect(fullName).to.equal('[Unknown Name]');
+    });
+
+    it('should display "[Unknown Name]" if there is a name with a space', function() {
+      if (isAngularTest) {
+        $scope.person = nameWithSpacePerson;
+        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(nameWithSpacePerson);
       }
 
       var fullName = $template.querySelector('[data-test="full-name"]').innerText;

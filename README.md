@@ -97,7 +97,7 @@ Each JavaScript function returns a native HTMLElement.
 
 Usage:
 ```javascript
-var dom = fsModules.fsPerosnVitals(person, {hideIcon: true, lifeSpan: 'long'});
+var dom = fsModules.fsPersonVitals(person, {hideIcon: true, lifeSpan: 'long'});
 ```
 
 Parameters are the same as the Angular directive of the same name.
@@ -106,7 +106,7 @@ Parameters are the same as the Angular directive of the same name.
 
 Usage:
 ```javascript
-var dom = fsModules.fsPerosnGender(person, {iconSize: 'small'});
+var dom = fsModules.fsPersonGender(person, {iconSize: 'small'});
 ```
 
 Parameters are the same as the Angular directive of the same name.
@@ -115,7 +115,7 @@ Parameters are the same as the Angular directive of the same name.
 
 Usage:
 ```javascript
-var dom = fsModules.fsPerosnPortrait(person, {iconSize: 'small'});
+var dom = fsModules.fsPersonPortrait(person, {iconSize: 'small'});
 ```
 
 Parameters are the same as the Angular directive of the same name.

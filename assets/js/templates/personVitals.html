@@ -1,5 +1,5 @@
 <div class="fs-person-vitals">
-  <div fs-add-wrapper-if="person.id" title="{{person.name || lang.UNKNOWN_NAME}}\n{{person.lifeSpan}}{{(person.lifeSpan && person.id) ? ' • ' : ''}}{{person.id}}">
+  <div fs-add-wrapper-if="person.id" title="{{person.name.trim() || lang.UNKNOWN_NAME}}\n{{person.lifeSpan}}{{(person.lifeSpan && person.id) ? ' • ' : ''}}{{person.id}}">
     <div class="fs-person-vitals__name {{ (person.nameConclusion.details.style ? 'fs-person-vitals__name--'+person.nameConclusion.details.style : '') | lowercase}}">
       <a href="#view=ancestor&person={{person.id}}" class="fs-person-vitals__link" fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data=\'{"id": "{{person.id}}", "name": "{{person.name}}", "gender": "{{person.gender}}"}\'>
         <span class="fs-person-vitals__name--split" ng-if="person.nameConclusion.details.nameForms">

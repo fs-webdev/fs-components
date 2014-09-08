@@ -127,4 +127,4 @@ window.fsModules = (function(module) {
   }], {restrict: 'E', replace: true});
 
   return module;
-})(window.fsModules || {}, window.jQuery);
+})(window.fsModules || {});

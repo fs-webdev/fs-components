@@ -65,7 +65,7 @@ window.fsModules = (function(module, angular, FS) {
     'ng-bind-html': function(node, attrName, obj) {
       var value = parse(node.getAttribute(attrName), obj);
 
-      node.innerText = FS.htmlDecode(value);
+      node.textContent = FS.htmlDecode(value);
       node.removeAttribute(attrName);
 
       return node;
@@ -265,7 +265,7 @@ window.fsModules = (function(module, angular, FS) {
   module.directives = {};
 
   /**
-   * Make the helpers.js extend function available
+   * Make the ngHelpers.js extend function available
    */
   module.extend = extend;
 
@@ -282,8 +282,7 @@ window.fsModules = (function(module, angular, FS) {
     for (var i = 0, len = matches.length; i < len; i++) {
       match = matches[i];
       exp = match.substr(2, match.length-4);  // only get what is inside the {{exp}}
-      parsed = $parse(exp);
-      value = parsed(obj) || '';
+      value = parse(exp, obj) || '';
 
       str = str.replace(match, value);
     }
@@ -305,7 +304,6 @@ window.fsModules = (function(module, angular, FS) {
     var temp = frag.appendChild(document.createElement('div'));
 
     temp.innerHTML = str;
-    addClass(temp, 'test');
 
     var nodes = temp.querySelectorAll('*');
     var root = temp.removeChild(temp.firstChild);

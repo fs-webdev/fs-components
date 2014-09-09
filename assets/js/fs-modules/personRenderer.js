@@ -2,6 +2,7 @@
  * Functions for rendering a person.
  * @author Steven Lambert <steven.lambert@familysearch.com>
  * @team tree - tesseract
+ * @version 1.0.0
  */
 window.fsModules = (function(module) {
   'use strict';
@@ -25,6 +26,8 @@ window.fsModules = (function(module) {
    * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
    *
    * @returns {DOMElement}
+   *
+   * @since 1.0.0
    */
   module.registerDirective('fsPersonVitals', ['person', 'options', function(person, options) {
     options = extend({}, defaultOptions, options);
@@ -53,6 +56,8 @@ window.fsModules = (function(module) {
    * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
    *
    * @returns {DOMElement}
+   *
+   * @since 1.0.0
    */
   module.registerDirective('fsPersonGender', ['person', 'options', function(person, options) {
     options = extend({}, defaultOptions, options);
@@ -81,6 +86,8 @@ window.fsModules = (function(module) {
    * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
    *
    * @returns {DOMElement}
+   *
+   * @since 1.0.0
    */
   module.registerDirective('fsPersonPortrait', ['person', 'options', function(person, options) {
     options = extend({}, defaultOptions, options);
@@ -115,6 +122,8 @@ window.fsModules = (function(module) {
    * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
    *
    * @returns {DOMElement}
+   *
+   * @since 1.0.0
    */
   module.registerDirective('fsCoupleInfo', ['husband', 'wife', 'options', function(husband, wife, options) {
     options = extend({}, defaultOptions, options);

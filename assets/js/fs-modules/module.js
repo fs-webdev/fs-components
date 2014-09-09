@@ -1,7 +1,8 @@
 /**
- * Functions for parsing angular templates into HTMLElement objects.
+ * Functions for parsing angular templates into Element objects.
  * @author Steven Lambert <steven.lambert@familysearch.com>
  * @team tree - tesseract
+ * @version 1.0.1
  */
 window.fsModules = (function(module, angular, FS) {
   'use strict';
@@ -32,11 +33,19 @@ window.fsModules = (function(module, angular, FS) {
   var cache = {};
 
   /**
-   * Mapping function for angular attribute directives
-   * @param {string} nodeName - The name of the attribute
-   * @param {object} object   - Used in place of $scope for parsing.
+   * Mapping function for angular attribute directives.
+   * @param {Element} node     - The element with the ng attribute.
+   * @param {string}  attrName - The name of the ng attribute.
+   * @param {object}  obj      - Used in place of $scope for parsing.
+   *
+   * @since 1.0.1
    */
   var ngAttrs = {
+    /**
+     * Keep the wrapper element only if the expression evaluates to true.
+     *
+     * @since 1.0.0
+     */
     'fs-add-wrapper-if': function(node, attrName, obj) {
       var value = parse(node.getAttribute(attrName), obj);
 
@@ -62,6 +71,11 @@ window.fsModules = (function(module, angular, FS) {
       }
     },
 
+    /**
+     * HTML decode the contents of the expression and insert it as text.
+     *
+     * @since 1.0.1
+     */
     'ng-bind-html': function(node, attrName, obj) {
       var value = parse(node.getAttribute(attrName), obj);
 
@@ -71,6 +85,11 @@ window.fsModules = (function(module, angular, FS) {
       return node;
     },
 
+    /**
+     * Insert the element only if the expression evaluates to true.
+     *
+     * @since 1.0.0
+     */
     'ng-if': function(node, attrName, obj) {
       var value = parse(node.getAttribute(attrName), obj);
 
@@ -91,6 +110,11 @@ window.fsModules = (function(module, angular, FS) {
       return node;
     },
 
+    /**
+     * Insert the expression into the href attribute of the element.
+     *
+     * @since 1.0.0
+     */
     'ng-src': function(node, attrName) {
       var attr = node.getAttribute(attrName);  // this should already be parsed at this point
 
@@ -100,6 +124,11 @@ window.fsModules = (function(module, angular, FS) {
       return node;
     },
 
+    /**
+     * Add the class to the element
+     *
+     * @since 1.0.0
+     */
     'ng-class': function(node, attrName, obj) {
       var value = parse(node.getAttribute(attrName), obj);
 
@@ -136,6 +165,8 @@ window.fsModules = (function(module, angular, FS) {
    * Uppercase a letter. Used internally for camelCase function.
    * @param {string} match  - The matched string (not used).
    * @param {string} letter - The letter from the matched string.
+   *
+   * @since 1.0.0
    */
   function upperCaseCamel(match, letter) {
     return letter.toUpperCase();
@@ -146,6 +177,8 @@ window.fsModules = (function(module, angular, FS) {
    * Taken from jQuery source.
    * @see {@link http://james.padolsey.com/jquery/#v=1.6.2&fn=jQuery.camelCase\jQuery}
    * @param {string}
+   *
+   * @since 1.0.0
    */
   function camelCase(str) {
     return str.replace(dashAlpha, upperCaseCamel);
@@ -153,8 +186,10 @@ window.fsModules = (function(module, angular, FS) {
 
   /**
    * Add a class to an element without duplicating it.
-   * @param {HTMLElement} node - The HTML element to add the class to.
-   * @param {string}      str  - String of space delimited class names.
+   * @param {Element} node - The HTML element to add the class to.
+   * @param {string}  str  - String of space delimited class names.
+   *
+   * @since 1.0.0
    */
   function addClass(node, str) {
     if (!str) return;
@@ -178,6 +213,8 @@ window.fsModules = (function(module, angular, FS) {
    * Normalize element attribute name.
    * @param {string} attr - The name of element attribute.
    * @returns {string}
+   *
+   * @since 1.0.0
    */
   function normalize(attr) {
     // strip x- and data- from the front of the element/attribute
@@ -190,7 +227,9 @@ window.fsModules = (function(module, angular, FS) {
   /**
    * Returns the parsed expression function.
    * @param {string} exp - The angular expression to parse.
-   * @param {object} obj  - Used in place of $scope for parsing.
+   * @param {object} obj - Used in place of $scope for parsing.
+   *
+   * @since 1.0.0
    */
   function parse(exp, obj) {
     if (!cache[exp]) {
@@ -202,9 +241,11 @@ window.fsModules = (function(module, angular, FS) {
 
   /**
    * Parse a registered directive from a template.
-   * @param {object} directive - Directive object {restrict, replace, func}.
-   * @param {HTMLElement} node - DOM element that the directive is on.
-   * @param {object} object    - Used in place of $scope for parsing.
+   * @param {object}  directive - Directive object {restrict, replace, func}.
+   * @param {Element} node      - DOM element that the directive is on.
+   * @param {object}  object    - Used in place of $scope for parsing.
+   *
+   * @since 1.0.0
    */
   function callDirective(directive, node, obj) {
     var attrsToTransfer = [];
@@ -274,6 +315,8 @@ window.fsModules = (function(module, angular, FS) {
    * @param {string} str - Angular expression string to parse.
    * @param {object} obj - Used in place of $scope for parsing.
    * @returns {string} The parsed angular value.
+   *
+   * @since 1.0.0
    */
   module.parseExpression = function(str, obj) {
     var matches = str.match(ngExp) || [];
@@ -294,7 +337,9 @@ window.fsModules = (function(module, angular, FS) {
    * Parse angular directive templates.
    * @param {string} str - Template str to parse.
    * @param {object} obj - Used in place of $scope for parsing.
-   * @returns {HTMLElement} A DOM element.
+   * @returns {Element} A DOM element.
+   *
+   * @since 1.0.0
    */
   module.parseTemplate = function(str, obj) {
     str = this.parseExpression(str, obj);
@@ -347,6 +392,8 @@ window.fsModules = (function(module, angular, FS) {
    * @param {string} fnName  - The camel case name of the directive.
    * @param {array}  fn      - Array of strings for each parameter, last value must be a function.
    * @param {object} options - The options for the directive {restrict, replace}
+   *
+   * @since 1.0.0
    */
   module.registerDirective = function(fnName, fn, options) {
     var $inject;

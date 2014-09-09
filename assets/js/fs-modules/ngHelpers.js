@@ -1,6 +1,7 @@
 /**
  * Helper functions taken as needed from Angular.js source
  * @see {@link https://github.com/angular/angular.js/blob/master/src/Angular.js|Angular}
+ * @version 1.0.1
  */
 
 /**
@@ -17,6 +18,8 @@
        (callback || angular.noop)(result);
      }
    </pre>
+ *
+ * @since 1.0.0
  */
 function noop() {}
 
@@ -47,6 +50,8 @@ function valueFn(value) {return function() {return value;};}
  *
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is defined.
+ *
+ * @since 1.0.0
  */
 function isDefined(value){return typeof value !== 'undefined';}
 
@@ -69,6 +74,8 @@ function isString(value){return typeof value === 'string';}
  * @private
  * @param {*} obj Object to check
  * @returns {boolean} True if `obj` is a window obj.
+ *
+ * @since 1.0.0
  */
 function isWindow(obj) {
   return obj && obj.document && obj.location && obj.alert && obj.setInterval;
@@ -84,16 +91,18 @@ function isWindow(obj) {
  *
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is an `Array`.
+ *
+ * @since 1.0.1
  */
-function isArray(value) {
-  return toString.call(value) === '[object Array]';
-}
+var isArray = Array.isArray;
 
 /**
  * @private
  * @param {*} obj
  * @return {boolean} Returns true if `obj` is an array or array-like object (NodeList, Arguments,
  *                   String ...)
+ *
+ * @since 1.0.0
  */
 function isArrayLike(obj) {
   if (obj == null || isWindow(obj)) {
@@ -120,6 +129,8 @@ function isArrayLike(obj) {
  *
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `Function`.
+ *
+ * @since 1.0.0
  */
 function isFunction(value){return typeof value === 'function';}
 
@@ -150,6 +161,8 @@ function isFunction(value){return typeof value === 'function';}
  * @param {Function} iterator Iterator function.
  * @param {Object=} context Object to become context (`this`) for the iterator function.
  * @returns {Object|Array} Reference to `obj`.
+ *
+ * @since 1.0.0
  */
 function forEach(obj, iterator, context) {
   var key;
@@ -190,6 +203,8 @@ function forEach(obj, iterator, context) {
  * @param {Object} dst Destination object.
  * @param {...Object} src Source object(s).
  * @returns {Object} Reference to `dst`.
+ *
+ * @since 1.0.0
  */
 function extend(dst) {
   forEach(arguments, function(obj){
@@ -229,6 +244,8 @@ function extend(dst) {
  *
  * @param {string} module The namespace to use for the new minErr instance.
  * @returns {function(string, string, ...): Error} instance
+ *
+ * @since 1.0.0
  */
 function minErr(module) {
   return function () {

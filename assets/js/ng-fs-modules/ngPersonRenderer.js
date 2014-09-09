@@ -1,4 +1,11 @@
 /**
+ * Angular directives for rendering a person.
+ * @author Steven Lambert <steven.lambert@familysearch.com>
+ * @team tree - tesseract
+ * @version 1.0.0
+ */
+
+/*
  * Since passing an object from one directive to a child directive via data
  * attributes doesn't work so well, use data-config to pass a config object
  * to the directive and then assign `scope.options = scope.config() || {}`.
@@ -9,6 +16,8 @@ angular.module('ngFsModules', ['ngSanitize'])
 
 /**
  * Conditionally add the wrapper element if the expression results to true, otherwise replace the element with it's children
+ *
+ * @since 1.0.0
  */
 .directive('fsAddWrapperIf', ['$animate', function($animate) {
   return {
@@ -76,6 +85,11 @@ angular.module('ngFsModules', ['ngSanitize'])
   };
 }])
 
+/**
+ * Render a persons vitals.
+ *
+ * @since 1.0.0
+ */
 .directive('fsPersonVitals', ['$compile', function($compile) {
   return {
     restrict: 'E',
@@ -92,6 +106,11 @@ angular.module('ngFsModules', ['ngSanitize'])
   };
 }])
 
+/**
+ * Render a persons gender and vitals.
+ *
+ * @since 1.0.0
+ */
 .directive('fsPersonGender', function() {
   return {
     restrict: 'E',
@@ -114,6 +133,11 @@ angular.module('ngFsModules', ['ngSanitize'])
   };
 })
 
+/**
+ * Render a persons portrait, gender, and vitals.
+ *
+ * @since 1.0.0
+ */
 .directive('fsPersonPortrait', function() {
   return {
     restrict: 'E',
@@ -135,6 +159,11 @@ angular.module('ngFsModules', ['ngSanitize'])
   };
 })
 
+/**
+ * Render a couple.
+ *
+ * @since 1.0.0
+ */
 .directive('fsCoupleInfo', function() {
   return {
     restrict: 'E',

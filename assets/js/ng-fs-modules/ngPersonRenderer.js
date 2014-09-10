@@ -15,72 +15,50 @@
 angular.module('ngFsModules', ['ngSanitize'])
 
 /**
- * Conditionally add the wrapper element if the expression results to true, otherwise replace the element with it's children
+ * Conditionally add the wrapper element if the expression results to true, otherwise replace the element with it's children.
+ * Functionality modeled after ngIf from Angularjs 1.2.0-rc.2 since that is the version of Angularjs we are using in tree.
+ * @see {@link https://github.com/angular/angular.js/blob/v1.2.0-rc.2/src/ng/directive/ngIf.js|ngIf}
  *
- * @since 1.0.0
+ * @since 1.0.2
  */
 .directive('fsAddWrapperIf', ['$animate', function($animate) {
   return {
-    // multiElement: true,
-    // transclude: 'element',
-    // priority: 600,
-    // terminal: true,
+    transclude: 'element',
+    priority: 1000,
     restrict: 'A',
-    // $$tlb: true,
-    // compile: function(tElement, tAttrs, transclude) {
-    //   console.log('hi');
-    // },
-    //
-    // TODO: need to upgrade to angular version 1.2.16 so that we can get the transclude function inside the link instead of the compile.
-    // @see {@link http://www.bennadel.com/blog/2561-changes-in-transclude-function-availability-in-angularjs-1-2.htm}
-    //
-    // mocking this directive after ngIf since it does almost the exact same thing
-    // @see {@link https://github.com/angular/angular.js/blob/master/src/ng/directive/ngIf.js}
-    //
-  //   link: function ($scope, $element, $attr, ctrl, $transclude) {
-  //     var block, childScope, previousElements;
-  //     $scope.$watch($attr.fsAddWrapperIf, function fsAddWrapperIfWatchAction(value) {
+    compile: function (element, attr, transclude) {
+      return function ($scope, $element, $attr) {
+        var childElement, childScope;
+        $scope.$watch($attr.fsAddWrapperIf, function fsAddWrapperIfWatchAction(value) {
+          if (childElement) {
+            $animate.leave(childElement);
+            childElement = undefined;
+          }
+          if (childScope) {
+            childScope.$destroy();
+            childScope = undefined;
+          }
 
-  //       if (value) {
-  //         if (!childScope) {
-  //           $transclude(function (clone, newScope) {
-  //             childScope = newScope;
-  //             clone[clone.length++] = document.createComment(' end fsAddWrapperIf: ' + $attr.fsAddWrapperIf + ' ');
-  //             // Note: We only need the first/last node of the cloned nodes.
-  //             // However, we need to keep the reference to the jqlite wrapper as it might be changed later
-  //             // by a directive with templateUrl when its template arrives.
-  //             block = {
-  //               clone: clone
-  //             };
-  //             $animate.enter(clone, $element.parent(), $element);
-  //           });
-  //         }
-  //       } else {
-  //         if(previousElements) {
-  //           previousElements.remove();
-  //           previousElements = null;
-  //         }
-  //         if(childScope) {
-  //           childScope.$destroy();
-  //           childScope = null;
-  //         }
-  //         if(block) {
-  //           previousElements = getBlockElements(block.clone);
-  //           $animate.leave(previousElements, function() {
-  //             previousElements = null;
-  //           });
-  //           block = null;
-  //         }
-  //       }
-  //     });
-  //   }
-    link: function(scope, element, attrs) {
-      scope.$watch(attrs.fsAddWrapperIf, function fsAddWrapperIfWatchAction(value) {
-
-        if (!value) {
-          element.replaceWith(element.contents());
-        }
-      });
+          // add the wrapper
+          if (value) {
+            childScope = $scope.$new();
+            transclude(childScope, function (clone) {
+              childElement = clone
+              $animate.enter(clone, $element.parent(), $element);
+            });
+          }
+          // remove the wrapper
+          else {
+            childScope = $scope.$new();
+            transclude(childScope, function (clone) {
+              $animate.enter(clone, $element.parent(), $element, function() {
+                childElement = clone.contents();
+                clone.replaceWith(clone.contents());
+              });
+            });
+          }
+        });
+      }
     }
   };
 }])

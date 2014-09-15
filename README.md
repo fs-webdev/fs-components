@@ -1,7 +1,7 @@
 fs-modules
 =============
 
-JavaScript and Angular components that work in conjunction with fs-styles
+JavaScript and Angular modules that work in conjunction with fs-styles
 
 ## How to Use
 

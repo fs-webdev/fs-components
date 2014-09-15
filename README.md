@@ -15,7 +15,7 @@ To include only the native JavaScript functions, include `fs-modules.js`. If you
 
 Displaying static HTML structure that developers can copy and paste creates a snapshot of the code when the developer uses it. This creates inconsistencies in the styles if the module changes.
 
-By using a JavaScript function (or Angular.js directive) that outputs the HTML structure, there is only one point of entry for the module. This means that every time the page is accessed, the most current version of the modules is used. This also means that any changes and updates to the module are reflected in the site immediately. 
+By using a JavaScript function (or Angular.js directive) that outputs the HTML structure, there is only one point of entry for the module. This means that every time the page is accessed, the most current version of the modules is used. This also means that any changes and updates to the module are reflected in the site immediately. *See [A Maintainable Style Guide](http://ianfeather.co.uk/a-maintainable-style-guide/) for more details*
 
 ## License
 Copyright © 2014 by Intellectual Reserve, Inc. See the LICENSE file for license rights and limitations.

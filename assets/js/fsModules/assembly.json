@@ -1,0 +1,10 @@
+{
+  "files": [
+  ],
+  "assemblies": [
+    "../fsModules.core/ngParser",
+    "../fsModules.core",
+    "../fsPerson"
+  ],
+  "simpleWrap": true
+}

@@ -45,10 +45,14 @@ var noIdPerson = fsModules.extend({}, person, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, person, {nameConclusion: null});
 var noPotriatPerson = fsModules.extend({}, person, {portraitUrl: null});
 
-/**
- * personRenderer
- */
-describe('personRenderer', function () {
+
+
+
+
+//--------------------------------------------------
+// fsPerson
+//--------------------------------------------------
+describe('fsPerson', function () {
   var $template;
 
   // set up the angular module
@@ -65,14 +69,18 @@ describe('personRenderer', function () {
 
     function compileDirective(template) {
       $template = $compile(template)($scope)[0];
-      $scope.$digest();
+      $scope.$apply();
     }
   }
 
-  /**
-   * fsModules.fsPersonVitals
-   */
-  describe('fsModules.fsPersonVitals', function() {
+
+
+
+
+  //--------------------------------------------------
+  // fsPerson.fsPersonVitals
+  //--------------------------------------------------
+  describe('fsPerson.fsPersonVitals', function() {
 
     it('should output the correct values with default options', function() {
       if (isAngularTest) {
@@ -286,10 +294,14 @@ describe('personRenderer', function () {
 
   });
 
-  /**
-   * fsModules.fsPersonGender
-   */
-  describe('fsModules.fsPersonGender', function() {
+
+
+
+
+  //--------------------------------------------------
+  // fsPerson.fsPersonGender
+  //--------------------------------------------------
+  describe('fsPerson.fsPersonGender', function() {
 
     it('should output the correct values with default options', function() {
       if (isAngularTest) {
@@ -341,10 +353,14 @@ describe('personRenderer', function () {
 
   });
 
-  /**
-   * fsModules.fsPersonPortrait
-   */
-  describe('fsModules.fsPersonPortrait', function() {
+
+
+
+
+  //--------------------------------------------------
+  // fsPerson.fsPersonPortrait
+  //--------------------------------------------------
+  describe('fsPerson.fsPersonPortrait', function() {
 
     it('should output the correct values with default options', function() {
       if (isAngularTest) {
@@ -416,10 +432,14 @@ describe('personRenderer', function () {
 
   });
 
-  /**
-   * fsModules.fsCoupleInfo
-   */
-  describe('fsModules.fsCoupleInfo', function() {
+
+
+
+
+  //--------------------------------------------------
+  // fsPerson.fsCoupleInfo
+  //--------------------------------------------------
+  describe('fsPerson.fsCoupleInfo', function() {
 
     it('should output the correct values with default options', function() {
       if (isAngularTest) {

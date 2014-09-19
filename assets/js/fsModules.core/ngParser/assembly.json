@@ -1,7 +1,7 @@
 {
   "files": [
-    "./ngFilters.js",
     "../ngHelpers.js",
+    "./ngFilters.js",
     "./ngParse.js"
   ],
   "simpleWrap": true

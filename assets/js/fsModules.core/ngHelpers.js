@@ -1,8 +1,10 @@
 /**
  * Helper functions taken as needed from Angular.js source
  * @see {@link https://github.com/angular/angular.js/blob/master/src/Angular.js|Angular}
- * @version 1.0.1
+ * @version 1.1.0
  */
+// add all helper functions into fsModules
+window.fsModules = window.fsModules || {};
 
 /**
  * @ngdoc function
@@ -19,25 +21,25 @@
      }
    </pre>
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function noop() {}
+fsModules.noop = noop = function noop() {}
 
-var trim = (function() {
-  // native trim is way faster: http://jsperf.com/angular-trim-test
-  // but IE doesn't have it... :-(
-  // TODO: we should move this into IE/ES5 polyfill
-  if (!String.prototype.trim) {
-    return function(value) {
-      return isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
-    };
-  }
-  return function(value) {
-    return isString(value) ? value.trim() : value;
-  };
-})();
+/**
+ * Removes whitespace from both ends of the string.
+ *
+ * @since 1.1.0
+ */
+fsModules.trim = trim = function(value) {
+  return isString(value) ? value.trim() : value;
+};
 
-function valueFn(value) {return function() {return value;};}
+/**
+ * Return a value.
+ *
+ * @since 1.1.0
+ */
+fsModules.valueFn = valueFn = function valueFn(value) {return function() {return value;};}
 
 /**
  * @ngdoc function
@@ -51,9 +53,9 @@ function valueFn(value) {return function() {return value;};}
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is defined.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function isDefined(value){return typeof value !== 'undefined';}
+fsModules.isDefined = isDefined = function isDefined(value){return typeof value !== 'undefined';}
 
 /**
  * @ngdoc function
@@ -65,8 +67,10 @@ function isDefined(value){return typeof value !== 'undefined';}
  *
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `String`.
+ *
+ * @since 1.1.0
  */
-function isString(value){return typeof value === 'string';}
+fsModules.isString = isString = function isString(value){return typeof value === 'string';}
 
 /**
  * Checks if `obj` is a window object.
@@ -75,9 +79,9 @@ function isString(value){return typeof value === 'string';}
  * @param {*} obj Object to check
  * @returns {boolean} True if `obj` is a window obj.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function isWindow(obj) {
+fsModules.isWindow = isWindow = function isWindow(obj) {
   return obj && obj.document && obj.location && obj.alert && obj.setInterval;
 }
 
@@ -92,9 +96,9 @@ function isWindow(obj) {
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is an `Array`.
  *
- * @since 1.0.1
+ * @since 1.1.0
  */
-var isArray = Array.isArray;
+fsModules.isArray = isArray = Array.isArray;
 
 /**
  * @private
@@ -102,9 +106,9 @@ var isArray = Array.isArray;
  * @return {boolean} Returns true if `obj` is an array or array-like object (NodeList, Arguments,
  *                   String ...)
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function isArrayLike(obj) {
+fsModules.isArrayLike = isArrayLike = function isArrayLike(obj) {
   if (obj == null || isWindow(obj)) {
     return false;
   }
@@ -130,9 +134,9 @@ function isArrayLike(obj) {
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `Function`.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function isFunction(value){return typeof value === 'function';}
+fsModules.isFunction = isFunction = function isFunction(value){return typeof value === 'function';}
 
 /**
  * @ngdoc function
@@ -162,9 +166,9 @@ function isFunction(value){return typeof value === 'function';}
  * @param {Object=} context Object to become context (`this`) for the iterator function.
  * @returns {Object|Array} Reference to `obj`.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function forEach(obj, iterator, context) {
+fsModules.forEach = forEach = function forEach(obj, iterator, context) {
   var key;
   if (obj) {
     if (isFunction(obj)){
@@ -204,9 +208,9 @@ function forEach(obj, iterator, context) {
  * @param {...Object} src Source object(s).
  * @returns {Object} Reference to `dst`.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function extend(dst) {
+fsModules.extend = extend = function extend(dst) {
   forEach(arguments, function(obj){
     if (obj !== dst) {
       forEach(obj, function(value, key){
@@ -245,9 +249,9 @@ function extend(dst) {
  * @param {string} module The namespace to use for the new minErr instance.
  * @returns {function(string, string, ...): Error} instance
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
-function minErr(module) {
+fsModules.minErr = minErr = function minErr(module) {
   return function () {
     var code = arguments[0],
       prefix = '[' + (module ? module + ':' : '') + code + '] ',

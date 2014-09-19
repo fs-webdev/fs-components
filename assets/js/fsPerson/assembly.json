@@ -1,0 +1,16 @@
+{
+  "files": [
+    "./viewModels/fsPersonVitals.viewModel.js",
+    "./viewModels/fsPersonGender.viewModel.js",
+    "./viewModels/fsPersonPortrait.viewModel.js",
+    "./viewModels/fsCoupleInfo.viewModel.js",
+    "./fsPersonVitals.directive.js",
+    "./fsPersonGender.directive.js",
+    "./fsPersonPortrait.directive.js",
+    "./fsCoupleInfo.directive.js"
+  ],
+  "simpleWrap": true,
+  "templatePath": "./templates",
+  "localePath": "../locales",
+  "localeFileName": "fs-modules"
+}

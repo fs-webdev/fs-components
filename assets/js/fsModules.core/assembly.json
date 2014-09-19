@@ -1,0 +1,8 @@
+{
+  "files": [
+    "./ngHelpers.js",
+    "../utils/fsModules.utils.js",
+    "./fsModules.module.js"
+  ],
+  "simpleWrap": true
+}

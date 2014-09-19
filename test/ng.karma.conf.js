@@ -9,11 +9,11 @@ module.exports = function(config) {
       'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular.js',
       'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-mocks.js',
       'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-sanitize.js',
-      'assets/js/test/runTestWithAngular.js',
-      'assets/js/fs-modules/assembly.json',
-      'assets/js/fs-modules/test/*Test.js',
-      'assets/js/ng-fs-modules/assembly.json',
-      'assets/js/test/*Test.js'
+      'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-animate.js',
+      'assets/js/utils/runTestWithAngular.js',
+      'assets/js/fsModules.core/ngFsModules.core/assembly.json',
+      'assets/js/fsPerson/ngFsPerson/assembly.json',
+      'assets/js/fsPerson/test/*Test.js',
     ]
   });
 }

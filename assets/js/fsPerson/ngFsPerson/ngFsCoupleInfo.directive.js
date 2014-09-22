@@ -16,7 +16,12 @@ angular.module('ngFsModules')
     },
     link: function(scope, element, attrs) {
       scope.options = scope.config() || {};
-      scope.lang = lang;
+
+      scope = fsCoupleInfoViewModel(scope);
+
+      scope.$watch('person', function fsCoupleInfoWatchAction() {
+        scope = fsCoupleInfoViewModel(scope);
+      });
     },
     compile: function(tElement, tAttrs) {
       // since data-config must be a string, we need to append the attrs string to fs-person-gender

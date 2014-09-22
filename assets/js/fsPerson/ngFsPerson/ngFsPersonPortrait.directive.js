@@ -15,7 +15,12 @@ angular.module('ngFsModules')
     },
     link: function(scope, element, attrs) {
       scope.options = scope.config() || {};
-      scope.lang = lang;
+
+      scope = fsPersonPortraitViewModel(scope);
+
+      scope.$watch('person', function fsPersonPortraitWatchAction() {
+        scope = fsPersonPortraitViewModel(scope);
+      });
     },
     compile: function(tElement, tAttrs) {
       // since data-config must be a string, we need to append the attrs string to fs-person-gender

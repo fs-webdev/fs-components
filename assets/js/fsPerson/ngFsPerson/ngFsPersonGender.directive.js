@@ -15,8 +15,12 @@ angular.module('ngFsModules')
     },
     link: function(scope, element, attrs) {
       scope.options = scope.config() || {};
-      scope.options.iconSize = scope.options.iconSize || 'medium';
-      scope.lang = lang;
+
+      scope = fsPersonGenderViewModel(scope);
+
+      scope.$watch('person', function fsPersonGenderWatchAction() {
+        scope = fsPersonGenderViewModel(scope);
+      });
     },
     compile: function(tElement, tAttrs) {
       // since data-config must be a string, we need to append the attrs string to fs-person-vitals

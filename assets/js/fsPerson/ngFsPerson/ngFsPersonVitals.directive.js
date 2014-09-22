@@ -18,9 +18,9 @@ angular.module('ngFsModules')
 
       scope = fsPersonVitalsViewModel(scope);
 
-      // scope.$watch('person', fsPersonVitalsWatchAction() {
-      //   scope = fsPersonVitalsViewModel(scope);
-      // });
+      scope.$watch('person', function fsPersonVitalsWatchAction() {
+        scope = fsPersonVitalsViewModel(scope);
+      });
     }
   };
 });

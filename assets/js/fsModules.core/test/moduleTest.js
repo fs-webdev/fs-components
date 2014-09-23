@@ -1,8 +1,8 @@
 var expect = chai.expect;
 
-/**
- * fsModules
- */
+//--------------------------------------------------
+// fsModules
+//--------------------------------------------------
 describe('fsModules', function() {
 
   it('should exist', function() {
@@ -11,9 +11,13 @@ describe('fsModules', function() {
 
 });
 
-/**
- * fsModules.parseExpression
- */
+
+
+
+
+//--------------------------------------------------
+// fsModules.parseExpression
+//--------------------------------------------------
 describe('fsModules.parseExpression', function() {
 
   it('should correctly parse some angular expressions', function() {
@@ -57,9 +61,13 @@ describe('fsModules.parseExpression', function() {
 
 });
 
-/**
- * fsModules.registerDirective
- */
+
+
+
+
+//--------------------------------------------------
+// fsModules.registerDirective
+//--------------------------------------------------
 describe('fsModules.registerDirective', function() {
 
   afterEach(function() {
@@ -118,9 +126,14 @@ describe('fsModules.registerDirective', function() {
 
 });
 
-/**
- * fsModules.parseTemplate
- */
+
+
+
+
+
+//--------------------------------------------------
+// fsModules.parseTemplate
+//--------------------------------------------------
 describe('fsModules.parseTemplate', function() {
 
   it('should call angular attribute function', function() {
@@ -162,18 +175,21 @@ describe('fsModules.parseTemplate', function() {
 
     var dirTemplate = '<div><span>{{person.name}}</span><span>{{person.id}}</span></div>';
 
+    // register an element directive
     fsModules.registerDirective('testDirE', ['person', function(person) {
       var template = fsModules.parseTemplate(dirTemplate, {person: person});
 
       return template;
     }], {restrict: 'E', replace: true});
 
+    // register an attribute directive
     fsModules.registerDirective('testDirA', ['person', function(person) {
       var template = fsModules.parseTemplate(dirTemplate, {person: person});
 
       return template;
     }], {restrict: 'A', replace: false});
 
+    // set up html with directives and expected output
     var str = {
       'E': '<div><test-dir-e data-person="person"></test-dir></div>',
       'A': '<div><div test-dir-a data-person="person"></div></div>'
@@ -224,9 +240,13 @@ describe('fsModules.parseTemplate', function() {
 
 });
 
-/**
- * ngAttrs
- */
+
+
+
+
+//--------------------------------------------------
+// ngAttrs
+//--------------------------------------------------
 describe('ngAttrs', function() {
 
   describe('fs-add-wrapper-if', function() {

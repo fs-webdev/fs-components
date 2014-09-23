@@ -2,7 +2,7 @@
  * Functions for parsing angular templates into Element objects.
  * @author Steven Lambert <steven.lambert@familysearch.com>
  * @team tree - tesseract
- * @version 1.0.1
+ * @version 1.1.0
  */
 window.fsModules = (function(module, angular, FS) {
   'use strict';
@@ -18,7 +18,7 @@ window.fsModules = (function(module, angular, FS) {
     $parse = module.ngParser;
   }
   else {
-    throw new Error('You must include \'fs-modules/ngParser.js\' before \'fs-modules.js\' to use this feature without angular.js.');
+    throw new Error('You must include \'fsModules.core/ngParser.js\' before \'fsModules.core.js\' to use this feature without angular.js.');
   }
   var ngExp = /\{\{[^}]*\}\}/g;
   var dashAlpha = /-([a-z])/gi;
@@ -304,11 +304,6 @@ window.fsModules = (function(module, angular, FS) {
 
   // dictionary of registered directives
   module.directives = {};
-
-  /**
-   * Make the ngHelpers.js extend function available
-   */
-  module.extend = extend;
 
   /**
    * Convert angular {{expressions}} to their associated value.

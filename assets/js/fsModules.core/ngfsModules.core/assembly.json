@@ -1,0 +1,8 @@
+{
+  "files": [
+    "./ngFsModules.module.js",
+    "../../utils/fsModules.utils.js",
+    "./ngFsModules.directives.js"
+  ],
+  "simpleWrap": true
+}

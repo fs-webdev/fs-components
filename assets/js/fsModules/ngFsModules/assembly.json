@@ -1,0 +1,9 @@
+{
+  "files": [
+  ],
+  "assemblies": [
+    "../../fsModules.core/ngFsModules.core",
+    "../../fsPerson/ngFsPerson"
+  ],
+  "simpleWrap": true
+}

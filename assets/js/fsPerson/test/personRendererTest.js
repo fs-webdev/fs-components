@@ -59,17 +59,20 @@ describe('fsPerson', function () {
   if (isAngularTest) {
     var $compile;
     var $scope;
+    var $$asyncCallback;
 
     beforeEach(window.module('ngFsModules'));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_){
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$$asyncCallback_){
       $compile = _$compile_;
       $scope = _$rootScope_;
+      $$asyncCallback = _$$asyncCallback_;
     }));
 
     function compileDirective(template) {
       $template = $compile(template)($scope)[0];
       $scope.$apply();
+      $$asyncCallback.flush();
     }
   }
 

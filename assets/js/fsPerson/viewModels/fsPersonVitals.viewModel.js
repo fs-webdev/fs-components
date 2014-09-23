@@ -27,7 +27,7 @@ function fsPersonVitalsViewModel(scope) {
     "gender": scope.person.gender
   });
 
-  scope.lifeSpan = scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan;
+  scope.lifeSpan = (scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan);
 
   var showDot = scope.lifeSpan && scope.person.id;
 

@@ -1,7 +1,7 @@
 fs-modules
 =============
 
-JavaScript and Angular modules that work in conjunction with fs-styles
+JavaScript and Angular modules that work in conjunction with [fs-webdev/fs-styles](https://github.com/fs-webdev/fs-styles) for the FamilySearch.org website.
 
 ## Why JavaScript Modules
 

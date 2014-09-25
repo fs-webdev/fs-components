@@ -1,6 +1,31 @@
 {
   "name": "fs-modules",
+  "description": "JavaScript and Angular modules that work in conjunction with fs-webdev/fs-styles for the FamilySearch.org website.",
   "version": "1.1.0",
+  "homepage": "https://github.com/fs-webdev/fs-modules",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fs-webdev/fs-modules"
+  }
+  "bugs": {
+    "url": "https://github.com/fs-webdev/fs-modules/issues"
+  },
+  "author": {
+    "name": "FamilySearch",
+    "url": "https://familysearch.org/"
+  },
+  "contributors": [
+    {
+      "name": "Steven Lambert",
+      "email": "steven.lambert@familysearch.org"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/fs-webdev/fs-modules/blob/master/LICENSE.txt"
+    }
+  ],
   "private": false,
   "dependencies": {},
   "devDependencies": {
@@ -20,9 +45,5 @@
   },
   "scripts": {
     "test": "sh ./bin/tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fs-webdev/fs-modules"
   }
 }

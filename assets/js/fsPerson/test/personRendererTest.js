@@ -39,7 +39,18 @@ var person2 = {
   portraitUrl: 'http://familysearch.org/portrait_female'
 };
 
-var noNamePerson = fsModules.extend({}, person, {name: null});
+var noNamePerson = fsModules.extend({}, person, {
+    name: null,
+    nameConclusion: {
+      details: {
+        style: 'EUROTYPIC',
+        nameForms: [{
+          givenPart: null,
+          familyPart: null
+        }]
+      }
+    }
+  });
 var nameWithSpacePerson = fsModules.extend({}, person, {name: " "});
 var noIdPerson = fsModules.extend({}, person, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, person, {nameConclusion: null});
@@ -119,8 +130,12 @@ describe('fsPerson', function () {
       }
 
       var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
+      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
 
-      expect(fullName).to.equal('[Unknown Name]');
+      expect(fullName, "Full name should be [Unknown Name]").to.equal('[Unknown Name]');
+      expect(givenName, "Given name should be [Unknown Name]").to.equal('[Unknown Name]');
+      expect(familyName, "Family name should be &nbsp;").to.equal(FS.htmlDecode('&nbsp;'));
     });
 
     it('should display "[Unknown Name]" if there is a name with a space', function() {

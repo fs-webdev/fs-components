@@ -10,13 +10,26 @@ function fsPersonVitalsViewModel(scope) {
   scope.options = scope.options || {};
 
   scope.name = '';
-  if (scope.person.name && scope.person.name.trim()) {
-    scope.name = scope.person.name.trim();
+  scope.givenPart = '';
+  scope.familyPart = '';
+  if (fsModules.getTrimmedValue(scope.person.name)) {
+    scope.name = fsModules.getTrimmedValue(scope.person.name);
   }
   else if (scope.person.id) {
     scope.name = lang.UNKNOWN_NAME;
   }
 
+  if (fsModules.propertyExists('nameConclusion.details.nameForms', scope.person)
+      && scope.person.nameConclusion.details.nameForms[0]
+      && (fsModules.getTrimmedValue(scope.person.nameConclusion.details.nameForms[0].givenPart) ||
+          fsModules.getTrimmedValue(scope.person.nameConclusion.details.nameForms[0].familyPart))) {
+    scope.givenPart = fsModules.getTrimmedValue(scope.person.nameConclusion.details.nameForms[0].givenPart);
+    scope.familyPart = fsModules.getTrimmedValue(scope.person.nameConclusion.details.nameForms[0].familyPart);
+  }
+  else if (scope.person.id) {
+    scope.givenPart = lang.UNKNOWN_NAME;
+    scope.familyPart = "&nbsp";
+  }
   if (fsModules.propertyExists('nameConclusion.details.style', scope.person)) {
     scope.nameConclusionStyle = 'fs-person-vitals__name--' + (''+scope.person.nameConclusion.details.style).toLowerCase();
   }

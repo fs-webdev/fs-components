@@ -13,7 +13,7 @@ By using a JavaScript function (or Angular.js directive) that outputs the HTML s
 
 fs-modules comes with both native JavaScript functions and Angular.js directives. The modules are set up so that you can include all modules or only select modules based on your needs.
 
-To include all of the JavaScript modules, add `fsModules.js` to your JS assets. If your app does not have Angular running, you will also need to include `fsModules.core/ngParser.js` before you include `fsModules.js`. If you only want certain modules, add `fsModules.core/ngParser.js` to your JS assets (as well as `ngParser` if you don't have Angular) and then the modules you wish to load (e.g. `fsperson.js`).
+To include all of the JavaScript modules, add `fsModules.js` to your JS assets. If your app does not have Angular running, you will also need to include `fsModules.core/ngParser.js` before you include `fsModules.js`. If you only want certain modules, add `fsModules.core.js` to your JS assets (as well as `ngParser` if you don't have Angular) and then the modules you wish to load (e.g. `fsperson.js`).
 
 To include all of the Angular directives, add `fsModules/ngFsModules.js` to your JS assets. If you only want certain modules, add `fsModules.core/ngFsModules.core.js` to your JS assets and then the modules you wish to load (e.g. `fsPerson/ngFsPerson.js`).
 

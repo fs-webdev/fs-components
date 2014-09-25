@@ -29,5 +29,9 @@ window.fsModules = (function(module, FS) {
     return true;
   }
 
+  module.getTrimmedValue = function(value) {
+    return value && value.trim();
+  }
+
   return module;
 })(window.fsModules || {}, window.FS);

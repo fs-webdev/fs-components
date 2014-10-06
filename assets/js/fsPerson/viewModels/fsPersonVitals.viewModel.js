@@ -47,6 +47,9 @@ function fsPersonVitalsViewModel(scope) {
   scope.showDot = !scope.options.hideLifeSpan && !scope.options.hideId && showDot;
 
   scope.title = scope.name + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
+  if(scope.options.showBirthPlace && scope.person.birthPlace) {
+    scope.title += '\n' + scope.person.birthPlace;
+  }
 
   return scope;
 }

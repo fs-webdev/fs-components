@@ -7,7 +7,8 @@
     "./fsPersonVitals.directive.js",
     "./fsPersonGender.directive.js",
     "./fsPersonPortrait.directive.js",
-    "./fsCoupleInfo.directive.js"
+    "./fsCoupleInfo.directive.js",
+    "./fsCouplePortrait.directive.js"
   ],
   "simpleWrap": true,
   "templatePath": "./templates",

@@ -4,10 +4,12 @@
     "../viewModels/fsPersonGender.viewModel.js",
     "../viewModels/fsPersonPortrait.viewModel.js",
     "../viewModels/fsCoupleInfo.viewModel.js",
+    "../viewModels/fsCouplePortrait.viewModel.js",
     "./ngFsPersonVitals.directive.js",
     "./ngFsPersonGender.directive.js",
     "./ngFsPersonPortrait.directive.js",
-    "./ngFsCoupleInfo.directive.js"
+    "./ngFsCoupleInfo.directive.js",
+    "./ngFsCouplePortrait.directive.js"
   ],
   "simpleWrap": true,
   "templatePath": "../templates",

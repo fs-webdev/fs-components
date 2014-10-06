@@ -35,7 +35,7 @@ angular.module('ngFsModules')
           if (value) {
             childScope = $scope.$new();
             transclude(childScope, function (clone) {
-              childElement = clone
+              childElement = clone;
               $animate.enter(clone, $element.parent(), $element);
             });
           }
@@ -50,7 +50,7 @@ angular.module('ngFsModules')
             });
           }
         });
-      }
+      };
     }
   };
 }]);

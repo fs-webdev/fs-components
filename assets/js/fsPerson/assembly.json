@@ -4,6 +4,7 @@
     "./viewModels/fsPersonGender.viewModel.js",
     "./viewModels/fsPersonPortrait.viewModel.js",
     "./viewModels/fsCoupleInfo.viewModel.js",
+    "./viewModels/fsCouplePortrait.viewModel.js",
     "./fsPersonVitals.directive.js",
     "./fsPersonGender.directive.js",
     "./fsPersonPortrait.directive.js",

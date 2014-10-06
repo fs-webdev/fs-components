@@ -17,9 +17,10 @@ angular.module('ngFsModules')
     link: function(scope, element, attrs) {
       scope.options = scope.config() || {};
 
-      scope = fsCouplePortraitViewModel(scope);
-
-      scope.$watch('person', function fsCouplePortraitWatchAction() {
+      scope.$watch('husband', function fsCouplePortraitHusbandWatchAction() {
+        scope = fsCouplePortraitViewModel(scope);
+      });
+      scope.$watch('wife', function fsCouplePortraitWifeWatchAction() {
         scope = fsCouplePortraitViewModel(scope);
       });
     },

@@ -14,7 +14,6 @@
         <span class="fs-person-details__lifeSpan" data-ng-if="!options.hideLifeSpan && lifeSpan" data-ng-bind-html="lifeSpan" data-test="lifeSpan"></span>
         <span class="fs-person-details__separator" data-ng-if="showDot">&nbsp;•&nbsp;</span>
         <span class="fs-person-details__id" data-ng-if="!options.hideId && person.id" data-test="pid">{{person.id}}</span>
-        <br data-ng-if="options.showBirthPlace && person.birthPlace">
         <span class="fs-person-details__birthPlace" data-ng-if="options.showBirthPlace && person.birthPlace">{{person.birthPlace}}</span>
         <span class="fs-person-details__selection-stopper">&#8203;</span>
       </div>

@@ -21,6 +21,9 @@
 fsModules.registerDirective('fsPersonPortrait', ['person', 'options', function(person, options) {
   var scope = fsPersonPortraitViewModel({person: person, options: options});
 
+  // the iconSmall must be set to 'small' when combined with the portrait
+  scope.options.iconSize = 'small';
+
   // convert the angular template
   var templateStr = templateList.fsPersonPortrait;
   var template = this.parseTemplate(templateStr, scope);

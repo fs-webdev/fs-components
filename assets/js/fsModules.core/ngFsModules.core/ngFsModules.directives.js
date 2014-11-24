@@ -10,7 +10,7 @@
  * element with it's children.
  * @see {@link https://github.com/angular/angular.js/blob/v1.2.16/src/ng/directive/ngIf.js|ngIf}
  *
- * @since 1.0.3
+ * @since 1.2.2
  */
 angular.module('ngFsModules')
        .directive('fsAddWrapperIf', ['$animate', function($animate) {

@@ -1,10 +1,17 @@
 <div class="fs-person-portrait">
-  <div class="fs-person-portrait__container">
-    <div class="fs-person-portrait__portrait fs-icon-before-portrait-{{gender}}">
-      <img class="fs-person-portrait__image" data-ng-if="person.portraitUrl" data-ng-src="{{person.portraitUrl}}" data-test="portrait">
+  <div class="person-info-row">
+    <div class="fs-person-portrait__container">
+      <div class="fs-person-portrait__portrait fs-icon-before-portrait-{{gender}}">
+        <img class="fs-person-portrait__image" data-ng-if="person.portraitUrl" data-ng-src="{{person.portraitUrl}}" data-test="portrait">
+      </div>
+    </div>
+    <div class="fs-person-portrait__gender-wrapper">
+      <fs-person-gender data-person="person" data-options="options"></fs-person-gender>
     </div>
   </div>
-  <div class="fs-person-portrait__gender-wrapper">
-    <fs-person-gender data-person="person" data-options="options"></fs-person-gender>
+  <div class="parents-info-row" data-ng-if="options.showParents && person.parents" data-ng-class="{'show-parents': options.showParents}">
+    <div class="show-parents-spacer">
+    </div>
+    <fs-couple-info class="show-parents-info" data-husband="person.parents.father" data-wife="person.parents.mother" data-config="{iconSize: 'small'}"></fs-couple-info>
   </div>
 </div>

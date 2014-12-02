@@ -18,5 +18,12 @@
         <span class="fs-person-details__selection-stopper">&#8203;</span>
       </div>
     </div>
+    <div class="fs-person__fs-person-parents">
+      <input id="fs-person-parents-{{uid}}" type="checkbox" class="fs-person-parents__show-button sr-only" data-ng-if="options.showParents && person.parents">
+      <label for="fs-person-parents-{{uid}}" class="fs-person-parents__show-label" data-ng-if="options.showParents && person.parents">
+        <span class="fs-person-parents__show-text">{BUTTON_SHOW_PARENTS}</span>
+        <span class="fs-person-parents__hide-text">{BUTTON_HIDE_PARENTS}</span>
+      </label>
+    </div>
   </div>
 </div>

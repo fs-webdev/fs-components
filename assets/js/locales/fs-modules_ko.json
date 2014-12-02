@@ -1,3 +1,5 @@
 {
-  "UNKNOWN_NAME": "[이름 미상]"
+  "UNKNOWN_NAME": "[이름 미상]",
+  "BUTTON_SHOW_PARENTS": "부모 보이기",
+  "BUTTON_HIDE_PARENTS": "부모 숨기기"
 }

@@ -1,3 +1,5 @@
 {
-  "UNKNOWN_NAME": "[Nom inconnu]"
+  "UNKNOWN_NAME": "[Nom inconnu]",
+  "BUTTON_SHOW_PARENTS": "Afficher les parents",
+  "BUTTON_HIDE_PARENTS": "Masquer les parents"
 }

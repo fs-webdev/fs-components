@@ -16,7 +16,9 @@
  *
  * @param {object} options - How to render the couple.
  * @property {string}  [options.iconSize=medium] - Size of the gender icon (small,medium).
+ * @property {boolean} [options.showBirthPlace=false] - Hide the birthplace.
  * @property {boolean} [options.hideGender=false] - Hide the gender icon.
+ * @property {boolean} [options.showParents=false] - Hide the parents of the couple.
  * @property {boolean} [options.hideLifeSpan=false] - Hide the lifespan.
  * @property {string}  [options.lifeSpan=short] - Show the short or the full lifeSpan (short,long).
  * @property {boolean} [options.hideId=false] - Hide the person id.

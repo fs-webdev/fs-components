@@ -1,3 +1,5 @@
 {
-  "UNKNOWN_NAME": "[不明な名前]"
+  "UNKNOWN_NAME": "[不明な名前]",
+  "BUTTON_SHOW_PARENTS": "両親の表示",
+  "BUTTON_HIDE_PARENTS": "両親の非表示"
 }

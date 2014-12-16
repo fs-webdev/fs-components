@@ -50,6 +50,7 @@ function fsPersonVitalsViewModel(scope) {
   if(scope.options.showBirthPlace && scope.person.birthPlace) {
     scope.title += '\n' + scope.person.birthPlace;
   }
+  scope.title = FS.htmlDecode(scope.title);
 
   return scope;
 }

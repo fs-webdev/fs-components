@@ -34,6 +34,8 @@ function fsPersonVitalsViewModel(scope) {
     scope.nameConclusionStyle = 'fs-person-vitals__name--' + (''+scope.person.nameConclusion.details.style).toLowerCase();
   }
 
+  if(scope.person && scope.person.name) scope.person.name = scope.person.name.replace(/"/g, "&quot;").replace(/'/g, "&rsquo;");
+
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,
     "name": scope.person.name,

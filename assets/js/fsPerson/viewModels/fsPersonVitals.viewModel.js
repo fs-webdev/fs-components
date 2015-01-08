@@ -34,7 +34,13 @@ function fsPersonVitalsViewModel(scope) {
     scope.nameConclusionStyle = 'fs-person-vitals__name--' + (''+scope.person.nameConclusion.details.style).toLowerCase();
   }
 
-  if(scope.person && scope.person.name) scope.person.name = scope.person.name.replace(/"/g, "&quot;").replace(/'/g, "&rsquo;");
+  if(scope.person.name) {
+    scope.person.name = scope.person.name
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
 
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,

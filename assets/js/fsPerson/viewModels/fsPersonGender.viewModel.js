@@ -15,7 +15,7 @@ function fsPersonGenderViewModel(scope) {
 
   scope.genderClass = (!scope.options.hideGender ? 'fs-person-gender--' + scope.options.iconSize : '');
 
-  scope.genderImageClass = (!scope.options.hideGender ? 'fs-icon-' + scope.options.iconSize + '-' + (scope.person.gender || 'unknown') : 'fs-icon-' + scope.options.iconSize).toLowerCase();
+  scope.genderImageClass = (!scope.options.hideGender ? 'fs-icon fs-icon-' + scope.options.iconSize + '-' + (scope.person.gender || 'unknown') : 'fs-icon fs-icon-' + scope.options.iconSize).toLowerCase();
 
   return scope;
 }

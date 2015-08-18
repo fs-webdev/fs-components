@@ -44,6 +44,6 @@
     "npm": "1.4.x"
   },
   "scripts": {
-    "test": "sh ./bin/tests"
+    "test": "bin/tests"
   }
 }

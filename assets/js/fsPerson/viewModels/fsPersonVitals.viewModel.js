@@ -5,7 +5,7 @@
  *
  * @since 1.1.0
  */
-function fsPersonVitalsViewModel(scope) {
+function fsPersonVitalsViewModel(scope, isAngular) {
   scope.person = scope.person || {};
   scope.options = scope.options || {};
 
@@ -34,13 +34,22 @@ function fsPersonVitalsViewModel(scope) {
     scope.nameConclusionStyle = 'fs-person-vitals__name--' + (''+scope.person.nameConclusion.details.style).toLowerCase();
   }
 
+  if(isAngular && scope.person.name) {
+    scope.person.name = scope.person.name
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+  }
+
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,
     "name": scope.person.name,
     "gender": scope.person.gender
   });
-
-  scope.openPersonCardData = FS.htmlEncode(scope.openPersonCardData);
+  if (!isAngular) {
+    scope.openPersonCardData = FS.htmlEncode(scope.openPersonCardData);
+  }
 
   scope.lifeSpan = (scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan);
 
@@ -48,10 +57,11 @@ function fsPersonVitalsViewModel(scope) {
 
   scope.showDot = !scope.options.hideLifeSpan && !scope.options.hideId && showDot;
 
-  scope.title = FS.htmlEncode(scope.name) + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
+  scope.title = scope.name + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
   if(scope.options.showBirthPlace && scope.person.birthPlace) {
     scope.title += '\n' + scope.person.birthPlace;
   }
+  scope.title = FS.htmlDecode(scope.title);
 
   return scope;
 }

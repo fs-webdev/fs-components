@@ -19,7 +19,9 @@ var uid = 0;  // unique id needed for show/hide parent label + input
  * @since 1.3.0
  */
 fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(person, options) {
-  var scope = fsPersonVitalsViewModel({person: person, options: options});
+  var scope = fsPersonVitalsViewModel({person: person, options: options}, false);
+  scope.title = FS.htmlEncode(scope.title);
+
 
   scope.uid = uid++;
 

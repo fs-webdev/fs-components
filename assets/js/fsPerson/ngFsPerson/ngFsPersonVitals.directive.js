@@ -20,10 +20,10 @@ angular.module('ngFsModules')
 
       scope.uid = uid++;
 
-      scope = fsPersonVitalsViewModel(scope);
+      scope = fsPersonVitalsViewModel(scope, true);
 
       scope.$watch('person', function fsPersonVitalsWatchAction() {
-        scope = fsPersonVitalsViewModel(scope);
+        scope = fsPersonVitalsViewModel(scope, true);
 
         // add parents in the link function since Angular will get into
         // an infinite state if it is added to the DOM (even behind and ng-if).

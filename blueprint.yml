@@ -1,0 +1,8 @@
+version: 0.3 # Blueprint Schema Version
+app:
+  name: frontier-fs-modules
+  build:
+    type: npm
+    npm_options:
+      full_npm_install: true
+      tests: local

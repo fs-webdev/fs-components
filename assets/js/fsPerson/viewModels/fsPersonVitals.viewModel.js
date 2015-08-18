@@ -40,7 +40,7 @@ function fsPersonVitalsViewModel(scope) {
     "gender": scope.person.gender
   });
 
-  scope.openPersonCardData = tempHtmlEncode(scope.openPersonCardData);
+  scope.openPersonCardData = FS.htmlEncode(scope.openPersonCardData);
 
   scope.lifeSpan = (scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan);
 
@@ -48,18 +48,10 @@ function fsPersonVitalsViewModel(scope) {
 
   scope.showDot = !scope.options.hideLifeSpan && !scope.options.hideId && showDot;
 
-  scope.title = tempHtmlEncode(scope.name) + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
+  scope.title = FS.htmlEncode(scope.name) + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
   if(scope.options.showBirthPlace && scope.person.birthPlace) {
     scope.title += '\n' + scope.person.birthPlace;
   }
 
   return scope;
-}
-
-function tempHtmlEncode(inStr) {
-  return inStr
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
 }

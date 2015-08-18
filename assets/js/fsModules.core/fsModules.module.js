@@ -236,7 +236,15 @@ window.fsModules = (function(module, angular, FS) {
       cache[exp] = $parse(exp);
     }
 
-    return cache[exp](obj);
+    var value = cache[exp](obj);
+
+    // Angular encodes all parsed expression before putting it into the DOM
+    // @see https://github.com/fs-webdev/fs-modules/issues/24
+    if (typeof value === 'string') {
+      value = FS.htmlEncode(value);
+    }
+
+    return value;
   }
 
   /**

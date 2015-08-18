@@ -40,18 +40,17 @@ function fsPersonVitalsViewModel(scope) {
     "gender": scope.person.gender
   });
 
-  scope.openPersonCardData = FS.htmlEncode(scope.openPersonCardData);
-
   scope.lifeSpan = (scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan);
 
   var showDot = scope.lifeSpan && scope.person.id;
 
   scope.showDot = !scope.options.hideLifeSpan && !scope.options.hideId && showDot;
 
-  scope.title = FS.htmlEncode(scope.name) + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
+  scope.title = scope.name + '\n' + (scope.lifeSpan || '') + (showDot ? ' • ' : '') + (scope.person.id || '');
   if(scope.options.showBirthPlace && scope.person.birthPlace) {
     scope.title += '\n' + scope.person.birthPlace;
   }
+  scope.title = FS.htmlDecode(scope.title);
 
   return scope;
 }

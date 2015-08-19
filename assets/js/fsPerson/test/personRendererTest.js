@@ -3,7 +3,7 @@ var expect = chai.expect;
 // run tests using angular directives instead of fsModules function calls
 var isAngularTest = window.isAngularTest || false;
 
-var person = {
+var personObj = {
   name: 'John Doe',
   gender: 'MALE',
   id: '1234-567',
@@ -41,7 +41,7 @@ var person2 = {
   portraitUrl: 'http://familysearch.org/portrait_female'
 };
 
-var noNamePerson = fsModules.extend({}, person, {
+var noNamePerson = fsModules.extend({}, personObj, {
     name: null,
     nameConclusion: {
       details: {
@@ -53,10 +53,10 @@ var noNamePerson = fsModules.extend({}, person, {
       }
     }
   });
-var nameWithSpacePerson = fsModules.extend({}, person, {name: " "});
-var noIdPerson = fsModules.extend({}, person, {id: null});
-var noNameConclusionPerson = fsModules.extend({}, person, {nameConclusion: null});
-var noPotriatPerson = fsModules.extend({}, person, {portraitUrl: null});
+var nameWithSpacePerson = fsModules.extend({}, personObj, {name: " "});
+var noIdPerson = fsModules.extend({}, personObj, {id: null});
+var noNameConclusionPerson = fsModules.extend({}, personObj, {nameConclusion: null});
+var noPotriatPerson = fsModules.extend({}, personObj, {portraitUrl: null});
 
 
 
@@ -66,7 +66,7 @@ var noPotriatPerson = fsModules.extend({}, person, {portraitUrl: null});
 // fsPerson
 //--------------------------------------------------
 describe('fsPerson', function () {
-  var $template;
+  var $templatem, person;
 
   // set up the angular module
   if (isAngularTest) {
@@ -88,6 +88,11 @@ describe('fsPerson', function () {
       $$asyncCallback.flush();
     }
   }
+
+  // reset person object for every test
+  beforeEach(function() {
+    person = JSON.parse(JSON.stringify(personObj));
+  });
 
 
 
@@ -350,6 +355,70 @@ describe('fsPerson', function () {
       expect(pid).to.equal(person.id);
       expect(lifeSpan).to.equal(person.lifeSpan);
       expect(birthPlace).to.equal('Smallville, Kansas');
+    });
+
+    it('persons with encoded name should create parsible data-cmd-data for the person card', function() {
+      // name comes from db encoded
+      person.name = 'Angelo &quot;Snaps&quot; Provolone';
+
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {openPersonCard: true});
+      }
+
+      var cmdData = $template.querySelector('a[data-cmd="openPersonCard"]').getAttribute('data-cmd-data');
+
+      // parse cmd data to try to throw error
+      function parseData() {
+        return JSON.parse(cmdData);
+      }
+
+      expect(parseData).to.not.throw(Error);
+    });
+
+    it('persons with encoded name should render the name correctly', function() {
+      // name comes from db encoded
+      person.name = 'Angelo &quot;Snaps&quot; Provolone';
+      person.nameConclusion.details.nameForms[0] = {
+        givenPart: 'Angelo &quot;Snaps&quot;',
+        familyPart: 'Provolone'
+      };
+
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, lifeSpan: \'long\'}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {openPersonCard: true, lifeSpan: 'long'});
+      }
+
+      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
+      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+
+      expect(fullName).to.equal('Angelo "Snaps" Provolone');
+      expect(givenName).to.equal('Angelo "Snaps"');
+      expect(familyName).to.equal('Provolone');
+    });
+
+    it('persons with encoded name should render the title correctly', function() {
+      // name comes from db encoded
+      person.name = 'Angelo &quot;Snaps&quot; Provolone';
+
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {openPersonCard: true});
+      }
+
+      var title = $template.querySelector('[title]').getAttribute('title');
+
+      expect(title).to.equal('Angelo "Snaps" Provolone\n1900-1960 • 1234-567');
     });
   });
 

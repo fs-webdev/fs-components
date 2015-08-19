@@ -379,7 +379,7 @@ describe('fsPerson', function () {
       expect(parseData).to.not.throw(Error);
     });
 
-    it('persons with encoded name should create render the name correctly in the DOM', function() {
+    it('persons with encoded name should render the name correctly', function() {
       // name comes from db encoded
       person.name = 'Angelo &quot;Snaps&quot; Provolone';
       person.nameConclusion.details.nameForms[0] = {
@@ -404,7 +404,7 @@ describe('fsPerson', function () {
       expect(familyName).to.equal('Provolone');
     });
 
-    it('persons with encoded name should create readable titles', function() {
+    it('persons with encoded name should render the title correctly', function() {
       // name comes from db encoded
       person.name = 'Angelo &quot;Snaps&quot; Provolone';
 

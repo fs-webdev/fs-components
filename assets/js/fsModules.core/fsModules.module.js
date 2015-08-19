@@ -77,7 +77,7 @@ window.fsModules = (function(module, angular, FS) {
      * @since 1.0.1
      */
     'ng-bind-html': function(node, attrName, obj) {
-      var value = parse(node.getAttribute(attrName), obj);
+      var value = parse(node.getAttribute(attrName), obj, false);
 
       node.textContent = FS.htmlDecode(value);
       node.removeAttribute(attrName);
@@ -228,10 +228,11 @@ window.fsModules = (function(module, angular, FS) {
    * Returns the parsed expression function.
    * @param {string} exp - The angular expression to parse.
    * @param {object} obj - Used in place of $scope for parsing.
+   * @param {boolean} [encode=true] - If the value should be encoded
    *
    * @since 1.0.0
    */
-  function parse(exp, obj) {
+  function parse(exp, obj, encode) {
     if (!cache[exp]) {
       cache[exp] = $parse(exp);
     }
@@ -240,7 +241,7 @@ window.fsModules = (function(module, angular, FS) {
 
     // Angular encodes all parsed expression before putting it into the DOM
     // @see https://github.com/fs-webdev/fs-modules/issues/24
-    if (typeof value === 'string') {
+    if (typeof value === 'string' && (encode || typeof encode === 'undefined')) {
       value = FS.htmlEncode(value);
     }
 

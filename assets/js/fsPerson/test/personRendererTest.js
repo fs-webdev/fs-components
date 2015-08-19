@@ -379,7 +379,32 @@ describe('fsPerson', function () {
       expect(parseData).to.not.throw(Error);
     });
 
-    it.only('persons with encoded name should create readable titles', function() {
+    it('persons with encoded name should create render the name correctly in the DOM', function() {
+      // name comes from db encoded
+      person.name = 'Angelo &quot;Snaps&quot; Provolone';
+      person.nameConclusion.details.nameForms[0] = {
+        givenPart: 'Angelo &quot;Snaps&quot;',
+        familyPart: 'Provolone'
+      };
+
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, lifeSpan: \'long\'}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {openPersonCard: true, lifeSpan: 'long'});
+      }
+
+      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
+      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+
+      expect(fullName).to.equal('Angelo "Snaps" Provolone');
+      expect(givenName).to.equal('Angelo "Snaps"');
+      expect(familyName).to.equal('Provolone');
+    });
+
+    it('persons with encoded name should create readable titles', function() {
       // name comes from db encoded
       person.name = 'Angelo &quot;Snaps&quot; Provolone';
 

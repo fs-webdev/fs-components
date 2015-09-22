@@ -56,7 +56,7 @@ var noNamePerson = fsModules.extend({}, personObj, {
 var nameWithSpacePerson = fsModules.extend({}, personObj, {name: " "});
 var noIdPerson = fsModules.extend({}, personObj, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, personObj, {nameConclusion: null});
-var noPotriatPerson = fsModules.extend({}, personObj, {portraitUrl: null});
+var noPortraitPerson = fsModules.extend({}, personObj, {portraitUrl: null});
 
 
 
@@ -85,6 +85,7 @@ describe('fsPerson', function () {
 
     function compileDirective(template) {
       $template = $compile(template)($scope)[0];
+      $("body").append($template);
       $scope.$apply();
       $$asyncCallback.flush();
     }
@@ -93,6 +94,10 @@ describe('fsPerson', function () {
   // reset person object for every test
   beforeEach(function() {
     person = JSON.parse(JSON.stringify(personObj));
+  });
+
+  afterEach(function() {
+    $("body").empty();
   });
 
 
@@ -107,7 +112,7 @@ describe('fsPerson', function () {
     it('should output the correct values with default options', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person);
@@ -133,7 +138,7 @@ describe('fsPerson', function () {
     it('should display "[Unknown Name]" if there is no name', function() {
       if (isAngularTest) {
         $scope.person = noNamePerson;
-        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(noNamePerson);
@@ -151,7 +156,7 @@ describe('fsPerson', function () {
     it('should display "[Unknown Name]" if there is a name with a space', function() {
       if (isAngularTest) {
         $scope.person = nameWithSpacePerson;
-        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(nameWithSpacePerson);
@@ -165,7 +170,7 @@ describe('fsPerson', function () {
     it('should not include the id if options.hideId is true', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{hideId: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{hideId: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {hideId: true});
@@ -191,7 +196,7 @@ describe('fsPerson', function () {
     it('should not include the id if there is none', function() {
       if (isAngularTest) {
         $scope.person = noIdPerson;
-        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(noIdPerson);
@@ -205,7 +210,7 @@ describe('fsPerson', function () {
     it('should not include the lifeSpan if options.hideLifeSpan is true', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{hideLifeSpan: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{hideLifeSpan: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {hideLifeSpan: true});
@@ -231,7 +236,7 @@ describe('fsPerson', function () {
     it('should not include the lifeSpan or id if options.hideLifeSpan and options.hideId are true', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{hideLifeSpan: true, hideId: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{hideLifeSpan: true, hideId: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {hideLifeSpan: true, hideId: true});
@@ -257,7 +262,7 @@ describe('fsPerson', function () {
     it('should not include the given and family names if there is no nameConclusion', function() {
       if (isAngularTest) {
         $scope.person = noNameConclusionPerson;
-        compileDirective('<fs-person-vitals data-person="person"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(noNameConclusionPerson);
@@ -283,7 +288,7 @@ describe('fsPerson', function () {
     it('should have an anchor tag tag with data-cmd="openPersonCard" if options.openPersonCard is true', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {openPersonCard: true});
@@ -309,7 +314,7 @@ describe('fsPerson', function () {
     it('should output the full lifespan if options.lifeSpan is "long"', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{lifeSpan: \'long\'}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{lifeSpan: \'long\'}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {lifeSpan: 'long'});
@@ -335,7 +340,7 @@ describe('fsPerson', function () {
     it('should output the birthPlace if options.showBirthPlace is true', function() {
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{showBirthPlace: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{showBirthPlace: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {showBirthPlace: true});
@@ -364,7 +369,7 @@ describe('fsPerson', function () {
 
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {openPersonCard: true});
@@ -390,7 +395,7 @@ describe('fsPerson', function () {
 
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, lifeSpan: \'long\'}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true, lifeSpan: \'long\'}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {openPersonCard: true, lifeSpan: 'long'});
@@ -411,7 +416,7 @@ describe('fsPerson', function () {
 
       if (isAngularTest) {
         $scope.person = person;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
       }
       else {
         $template = fsModules.fsPersonVitals(person, {openPersonCard: true});
@@ -547,11 +552,11 @@ describe('fsPerson', function () {
 
     it('should not include the portrait if there is none', function() {
       if (isAngularTest) {
-        $scope.person = noPotriatPerson;
+        $scope.person = noPortraitPerson;
         compileDirective('<fs-person-portrait data-person="person"></fs-person-portrait>');
       }
       else {
-        $template = fsModules.fsPersonPortrait(noPotriatPerson);
+        $template = fsModules.fsPersonPortrait(noPortraitPerson);
       }
 
       var portrait = $template.querySelector('img');
@@ -574,7 +579,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-info data-husband="person" data-wife="person2"></fs-couple-info>');
+        compileDirective('<fs-couple-info data-husband="person" data-wife="person2" bindonce="person"></fs-couple-info>');
       }
       else {
         $template = fsModules.fsCoupleInfo(person, person2);
@@ -647,6 +652,9 @@ describe('fsPerson', function () {
 
   });
 
+
+
+
   //--------------------------------------------------
   // fsPerson.fsCouplePortrait
   //--------------------------------------------------
@@ -656,7 +664,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-portrait data-husband="person" data-wife="person2"></fs-couple-portrait>');
+        compileDirective('<fs-couple-portrait data-husband="person" data-wife="person2" bindonce="person"></fs-couple-portrait>');
       }
       else {
         $template = fsModules.fsCouplePortrait(person, person2);

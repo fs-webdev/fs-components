@@ -1,26 +1,26 @@
 <div class="fs-person-vitals">
   <div data-fs-add-wrapper-if="person.id" title="{{title}}">
-    <div class="fs-person-vitals__name" ng-class="nameConclusionStyle">
-      <a href="#view=ancestor&person={{person.id}}" class="fs-person-vitals__link" data-fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data='{{openPersonCardData}}'>
-        <span class="fs-person-vitals__name--split" data-ng-if="person.nameConclusion.details.nameForms">
-          <span class="fs-person-vitals__name-given" data-ng-bind-html="givenPart" data-test="given-name"></span><br>
-          <span class="fs-person-vitals__name-family" data-ng-bind-html="familyPart" data-test="family-name"></span>
+    <div class="fs-person-vitals__name" data-ng-class="nameConclusionStyle">
+      <a data-bo-href="'#view=ancestor&person=' + person.id" class="fs-person-vitals__link" data-fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data='{{openPersonCardData}}'>
+        <span class="fs-person-vitals__name--split" data-bo-if="person.nameConclusion.details.nameForms">
+          <span class="fs-person-vitals__name-given" data-bo-html="givenPart" data-test="given-name"></span><br>
+          <span class="fs-person-vitals__name-family" data-bo-html="familyPart" data-test="family-name"></span>
         </span>
-        <span class="fs-person-vitals__name-full" data-ng-bind-html="name" data-test="full-name"></span>
+        <span class="fs-person-vitals__name-full" data-bo-html="name" data-test="full-name"></span>
       </a>
     </div>
     <div class="fs-person-vitals__fs-person-details">
-      <div class="fs-person-details__container">
-        <span class="fs-person-details__lifeSpan" data-ng-if="!options.hideLifeSpan && lifeSpan" data-ng-bind-html="lifeSpan" data-test="lifeSpan"></span>
-        <span class="fs-person-details__separator" data-ng-if="showDot">&nbsp;•&nbsp;</span>
-        <span class="fs-person-details__id" data-ng-if="!options.hideId && person.id" data-ng-bind-html="person.id" data-test="pid"></span>
+      <div class="fs-person-details__container" bindonce="!!person && !!lifeSpan || undefined">
+        <span class="fs-person-details__lifeSpan" data-bo-if="!options.hideLifeSpan && lifeSpan" data-bo-html="lifeSpan" data-test="lifeSpan"></span>
+        <span class="fs-person-details__separator" data-bo-if="showDot">&nbsp;•&nbsp;</span>
+        <span class="fs-person-details__id" data-bo-if="!options.hideId && person.id" data-bo-html="person.id" data-test="pid"></span>
         <span class="fs-person-details__selection-stopper">&#8203;</span>
       </div>
-      <span class="fs-person-details__birthPlace" data-ng-if="options.showBirthPlace && person.birthPlace" data-test="birthPlace" data-ng-bind-html="person.birthPlace"></span>
+      <span class="fs-person-details__birthPlace" data-bo-if="options.showBirthPlace && person.birthPlace" data-test="birthPlace" data-bo-html="person.birthPlace"></span>
     </div>
-    <div class="fs-person__fs-person-parents">
-      <input id="fs-person-parents-{{uid}}" type="checkbox" class="fs-person-parents__show-button sr-only" data-ng-if="options.showParents && person.parents">
-      <label for="fs-person-parents-{{uid}}" class="fs-person-parents__show-label" data-ng-if="options.showParents && person.parents">
+    <div class="fs-person__fs-person-parents" data-bo-if="options.showParents">
+      <input id="fs-person-parents-{{uid}}" type="checkbox" class="fs-person-parents__show-button sr-only" data-bo-if="options.showParents && person.parents">
+      <label for="fs-person-parents-{{uid}}" class="fs-person-parents__show-label" data-bo-if="options.showParents && person.parents">
         <span class="fs-person-parents__show-text">{BUTTON_SHOW_PARENTS}</span>
         <span class="fs-person-parents__hide-text">{BUTTON_HIDE_PARENTS}</span>
       </label>

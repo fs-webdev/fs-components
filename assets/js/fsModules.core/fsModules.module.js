@@ -71,95 +71,122 @@ window.fsModules = (function(module, angular, FS) {
       }
     },
 
-    /**
-     * HTML decode the contents of the expression and insert it as text.
-     *
-     * @since 1.0.1
-     */
-    'ng-bind-html': function(node, attrName, obj) {
-      var value = parse(node.getAttribute(attrName), obj, false);
-
-      node.textContent = FS.htmlDecode(value);
-      node.removeAttribute(attrName);
-
-      return node;
-    },
-
-    /**
-     * Insert the element only if the expression evaluates to true.
-     *
-     * @since 1.0.0
-     */
-    'ng-if': function(node, attrName, obj) {
-      var value = parse(node.getAttribute(attrName), obj);
-
-      if (!value) {
-        // remove the node if it has a parent
-        if (node.parentNode) {
-          node.parentNode.removeChild(node);
-        }
-        // otherwise make the node a comment
-        else {
-          return document.createComment(' ' + attrName + ' ' + value + ' ');
-        }
-      }
-      else {
-        node.removeAttribute(attrName);
-      }
-
-      return node;
-    },
-
-    /**
-     * Insert the expression into the href attribute of the element.
-     *
-     * @since 1.0.0
-     */
-    'ng-src': function(node, attrName) {
-      var attr = node.getAttribute(attrName);  // this should already be parsed at this point
-
-      node.setAttribute('src', attr);
-      node.removeAttribute(attrName);
-
-      return node;
-    },
-
-    /**
-     * Add the class to the element
-     *
-     * @since 1.0.0
-     */
-    'ng-class': function(node, attrName, obj) {
-      var value = parse(node.getAttribute(attrName), obj);
-
-      /*
-       * ng-class can evaluate to 3 things:
-       * 1. string representing space delimited class names
-       * 2. an array
-       * 3. a map of class names to boolean values where the names of the properties whose values are truthy will be added as css classes to the element
-       * @see {@link https://docs.angularjs.org/api/ng/directive/ngClass|ngClass}
-       */
-      if (isString(value)) {
-        addClass(node, value);
-      }
-      else if (isArray(value)) {
-        for (var i = 0, len = value.length; i < len; i++) {
-          addClass(node, value[i]);
-        }
-      }
-      else {
-        forEach(value, function(val, key){
-          if (val) {
-            addClass(node, key);
-          }
-        });
-      }
-
-      node.removeAttribute(attrName);
-
-      return node;
-    }
+    'bo-class': angularClass,
+    'ng-class': angularClass,
+    'bo-href': angularHref,
+    'ng-href': angularHref,
+    'bo-html': angularHtml,
+    'ng-bind-html': angularHtml,
+    'bo-if': angularIf,
+    'ng-if': angularIf,
+    'bo-src': angularSrc,
+    'bo-src-i': angularSrc,
+    'ng-src': angularSrc
   };
+
+  /**
+   * Add the class to the element
+   *
+   * @since 1.0.0
+   */
+  function angularClass(node, attrName, obj) {
+    var value = parse(node.getAttribute(attrName), obj);
+
+    /*
+     * ng-class can evaluate to 3 things:
+     * 1. string representing space delimited class names
+     * 2. an array
+     * 3. a map of class names to boolean values where the names of the properties whose values are truthy will be added as css classes to the element
+     * @see {@link https://docs.angularjs.org/api/ng/directive/ngClass|ngClass}
+     */
+    if (isString(value)) {
+      addClass(node, value);
+    }
+    else if (isArray(value)) {
+      for (var i = 0, len = value.length; i < len; i++) {
+        addClass(node, value[i]);
+      }
+    }
+    else {
+      forEach(value, function(val, key){
+        if (val) {
+          addClass(node, key);
+        }
+      });
+    }
+
+    node.removeAttribute(attrName);
+
+    return node;
+  }
+
+  /**
+   * Insert the expression into the src attribute of the element.
+   *
+   * @since 1.5.0
+   */
+  function angularHref(node, attrName, obj) {
+    var attr = node.getAttribute(attrName);  // this should already be parsed at this point
+
+    node.setAttribute('href', attr);
+    node.removeAttribute(attrName);
+
+    return node;
+  }
+
+  /**
+   * HTML decode the contents of the expression and insert it as text.
+   *
+   * @since 1.0.1
+   */
+  function angularHtml(node, attrName, obj) {
+    var value = parse(node.getAttribute(attrName), obj, false);
+
+    node.textContent = FS.htmlDecode(value);
+    node.removeAttribute(attrName);
+
+    return node;
+  }
+
+  /**
+   * Insert the element only if the expression evaluates to true.
+   *
+   * @since 1.0.0
+   */
+
+  function angularIf(node, attrName, obj) {
+    var value = parse(node.getAttribute(attrName), obj);
+
+    if (!value) {
+      // remove the node if it has a parent
+      if (node.parentNode) {
+        node.parentNode.removeChild(node);
+      }
+      // otherwise make the node a comment
+      else {
+        return document.createComment(' ' + attrName + ' ' + value + ' ');
+      }
+    }
+    else {
+      node.removeAttribute(attrName);
+    }
+
+    return node;
+  }
+
+  /**
+   * Insert the expression into the src attribute of the element.
+   *
+   * @since 1.0.0
+   */
+  function angularSrc(node, attrName, obj) {
+    var attr = node.getAttribute(attrName);  // this should already be parsed at this point
+
+    node.setAttribute('src', attr);
+    node.removeAttribute(attrName);
+
+    return node;
+  }
 
   /**
    * Uppercase a letter. Used internally for camelCase function.

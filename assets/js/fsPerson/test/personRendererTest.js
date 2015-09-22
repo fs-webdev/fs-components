@@ -75,6 +75,7 @@ describe('fsPerson', function () {
     var $$asyncCallback;
 
     beforeEach(window.module('ngFsModules'));
+    beforeEach(window.module('pasvaz.bindonce'));
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$$asyncCallback_){
       $compile = _$compile_;

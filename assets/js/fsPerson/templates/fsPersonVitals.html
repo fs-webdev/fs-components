@@ -1,5 +1,5 @@
 <div class="fs-person-vitals">
-  <div data-fs-add-wrapper-if="person.id" title="{{title}}">
+  <div data-fs-add-wrapper-if="person.id" title="{{title}}" bindonce="person">
     <div class="fs-person-vitals__name" data-ng-class="nameConclusionStyle">
       <a data-bo-href="'#view=ancestor&person=' + person.id" class="fs-person-vitals__link" data-fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data='{{openPersonCardData}}'>
         <span class="fs-person-vitals__name--split" data-bo-if="person.nameConclusion.details.nameForms">

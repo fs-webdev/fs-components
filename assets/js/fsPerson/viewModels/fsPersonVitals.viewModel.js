@@ -37,7 +37,8 @@ function fsPersonVitalsViewModel(scope) {
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,
     "name": scope.person.name,
-    "gender": scope.person.gender
+    "gender": scope.person.gender,
+    "linksInNewTab": scope.options.linksInNewTab
   });
 
   scope.lifeSpan = (scope.options.lifeSpan === 'long' ? scope.person.fullLifeSpan : scope.person.lifeSpan);

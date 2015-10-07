@@ -47,30 +47,33 @@ window.fsModules = (function(module, angular, FS) {
      * @since 1.0.0
      */
     'fs-add-wrapper-if': function(node, attrName, obj) {
-      var value = parse(node.getAttribute(attrName), obj);
+      if(node) {
+        var value = parse(node.getAttribute(attrName), obj);
 
-      if (!value) {
-        var temp = null;
+        if (!value) {
+          var temp = null;
 
-        // need to have a parentNode for this to work
-        if (!node.parentNode) {
-          temp = document.createElement('div');
-          temp.appendChild(node);
+          // need to have a parentNode for this to work
+          if (!node.parentNode) {
+            temp = document.createElement('div');
+            temp.appendChild(node);
+          }
+
+          // move all child nodes to sibling nodes and remove it
+          while(node.children.length) {
+            node.parentNode.insertBefore(node.children[0], node);
+          }
+          node.parentNode.removeChild(node);
+
+          return temp;
         }
-
-        // move all child nodes to sibling nodes and remove it
-        while(node.children.length) {
-          node.parentNode.insertBefore(node.children[0], node);
+        else {
+          node.removeAttribute(attrName);
         }
-        node.parentNode.removeChild(node);
-
-        return temp;
-      }
-      else {
-        node.removeAttribute(attrName);
       }
     },
 
+    'bindonce': removeAttribute,
     'bo-class': angularClass,
     'ng-class': angularClass,
     'bo-href': angularHref,
@@ -85,39 +88,54 @@ window.fsModules = (function(module, angular, FS) {
   };
 
   /**
+   * Remove bindonce attribute from pure fs-modules persons
+   *
+   * @since 2.1.1
+   */
+  function removeAttribute(node, attrName, obj) {
+    if(node) {
+      node.removeAttribute(attrName);
+
+      return node;
+    }
+  }
+
+  /**
    * Add the class to the element
    *
    * @since 1.0.0
    */
   function angularClass(node, attrName, obj) {
-    var value = parse(node.getAttribute(attrName), obj);
+    if(node) {
+      var value = parse(node.getAttribute(attrName), obj);
 
-    /*
-     * ng-class can evaluate to 3 things:
-     * 1. string representing space delimited class names
-     * 2. an array
-     * 3. a map of class names to boolean values where the names of the properties whose values are truthy will be added as css classes to the element
-     * @see {@link https://docs.angularjs.org/api/ng/directive/ngClass|ngClass}
-     */
-    if (isString(value)) {
-      addClass(node, value);
-    }
-    else if (isArray(value)) {
-      for (var i = 0, len = value.length; i < len; i++) {
-        addClass(node, value[i]);
+      /*
+       * ng-class can evaluate to 3 things:
+       * 1. string representing space delimited class names
+       * 2. an array
+       * 3. a map of class names to boolean values where the names of the properties whose values are truthy will be added as css classes to the element
+       * @see {@link https://docs.angularjs.org/api/ng/directive/ngClass|ngClass}
+       */
+      if (isString(value)) {
+        addClass(node, value);
       }
-    }
-    else {
-      forEach(value, function(val, key){
-        if (val) {
-          addClass(node, key);
+      else if (isArray(value)) {
+        for (var i = 0, len = value.length; i < len; i++) {
+          addClass(node, value[i]);
         }
-      });
+      }
+      else {
+        forEach(value, function(val, key){
+          if (val) {
+            addClass(node, key);
+          }
+        });
+      }
+
+      node.removeAttribute(attrName);
+
+      return node;
     }
-
-    node.removeAttribute(attrName);
-
-    return node;
   }
 
   /**
@@ -126,12 +144,14 @@ window.fsModules = (function(module, angular, FS) {
    * @since 1.5.0
    */
   function angularHref(node, attrName, obj) {
-    var attr = node.getAttribute(attrName);  // this should already be parsed at this point
+    if(node) { // There is a negative interaction between this angularHref and fs-add-wrapper-if in Firefox
+      var attr = node.getAttribute(attrName);
 
-    node.setAttribute('href', attr);
-    node.removeAttribute(attrName);
+      node.setAttribute('href', attr);
+      node.removeAttribute(attrName);
 
-    return node;
+      return node;
+    }
   }
 
   /**
@@ -140,12 +160,14 @@ window.fsModules = (function(module, angular, FS) {
    * @since 1.0.1
    */
   function angularHtml(node, attrName, obj) {
-    var value = parse(node.getAttribute(attrName), obj, false);
+    if(node) {
+      var value = parse(node.getAttribute(attrName), obj, false);
 
-    node.textContent = FS.htmlDecode(value);
-    node.removeAttribute(attrName);
+      node.textContent = FS.htmlDecode(value);
+      node.removeAttribute(attrName);
 
-    return node;
+      return node;
+    }
   }
 
   /**
@@ -155,23 +177,25 @@ window.fsModules = (function(module, angular, FS) {
    */
 
   function angularIf(node, attrName, obj) {
-    var value = parse(node.getAttribute(attrName), obj);
+    if(node) {
+      var value = parse(node.getAttribute(attrName), obj);
 
-    if (!value) {
-      // remove the node if it has a parent
-      if (node.parentNode) {
-        node.parentNode.removeChild(node);
+      if (!value) {
+        // remove the node if it has a parent
+        if (node.parentNode) {
+          node.parentNode.removeChild(node);
+        }
+        // otherwise make the node a comment
+        else {
+          return document.createComment(' ' + attrName + ' ' + value + ' ');
+        }
       }
-      // otherwise make the node a comment
       else {
-        return document.createComment(' ' + attrName + ' ' + value + ' ');
+        node.removeAttribute(attrName);
       }
-    }
-    else {
-      node.removeAttribute(attrName);
-    }
 
-    return node;
+      return node;
+    }
   }
 
   /**
@@ -180,12 +204,14 @@ window.fsModules = (function(module, angular, FS) {
    * @since 1.0.0
    */
   function angularSrc(node, attrName, obj) {
-    var attr = node.getAttribute(attrName);  // this should already be parsed at this point
+    if(node) {
+      var attr = node.getAttribute(attrName);  // this should already be parsed at this point
 
-    node.setAttribute('src', attr);
-    node.removeAttribute(attrName);
+      node.setAttribute('src', attr);
+      node.removeAttribute(attrName);
 
-    return node;
+      return node;
+    }
   }
 
   /**

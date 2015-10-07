@@ -76,6 +76,7 @@ window.fsModules = (function(module, angular, FS) {
       }
     },
 
+    'bindonce': removeAttribute,
     'bo-class': angularClass,
     'ng-class': angularClass,
     'bo-href': angularHref,
@@ -88,6 +89,17 @@ window.fsModules = (function(module, angular, FS) {
     'bo-src-i': angularSrc,
     'ng-src': angularSrc
   };
+
+  /**
+   * Remove bindonce attribute from pure fs-modules persons
+   *
+   * @since 2.1.1
+   */
+  function removeAttribute(node, attrName, obj) {
+    node.removeAttribute(attrName);
+
+    return node;
+  }
 
   /**
    * Add the class to the element

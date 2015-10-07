@@ -29,15 +29,17 @@
   "private": false,
   "dependencies": {},
   "devDependencies": {
-    "mocha": "~1.21.3",
     "chai": "~1.9.1",
     "frontier-build-tools": "git+https://github.com/fs-webdev/frontier-build-tools.git#3.0.0",
-    "theme-engage": "git+https://github.com/fs-webdev/theme-engage.git#2.2.2",
-    "karma": "~0.10.10",
-    "karma-mocha": "0.1.3",
-    "karma-chrome-launcher": "~0.1.3",
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.1",
     "karma-coffee-preprocessor": "~0.1.3",
-    "karma-phantomjs-launcher": "~0.1.4"
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "0.1.3",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-safari-launcher": "^0.1.1",
+    "mocha": "~1.21.3",
+    "theme-engage": "git+https://github.com/fs-webdev/theme-engage.git#2.2.2"
   },
   "engines": {
     "node": "0.10.x",

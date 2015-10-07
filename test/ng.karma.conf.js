@@ -5,6 +5,8 @@ var path = require('path'),
 module.exports = function(config) {
   masterConf(config, {
     projectPath: projectPath,
+    // singleRun: true,
+    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
     testFiles: [
       'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular.js',
       'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-mocks.js',

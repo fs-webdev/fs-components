@@ -119,11 +119,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
       expect(personCard).to.be.a('null');
@@ -144,9 +144,9 @@ describe('fsPerson', function () {
         $template = fsModules.fsPersonVitals(noNamePerson);
       }
 
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
 
       expect(fullName, "Full name should be [Unknown Name]").to.equal('[Unknown Name]');
       expect(givenName, "Given name should be [Unknown Name]").to.equal('[Unknown Name]');
@@ -162,7 +162,7 @@ describe('fsPerson', function () {
         $template = fsModules.fsPersonVitals(nameWithSpacePerson);
       }
 
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
 
       expect(fullName).to.equal('[Unknown Name]');
     });
@@ -177,11 +177,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
       var pid = $template.querySelector('[data-test="pid"]');
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
       expect(personCard).to.be.a('null');
@@ -217,10 +217,10 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
       var lifeSpan = $template.querySelector('[data-test="lifeSpan"]');
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
@@ -243,9 +243,9 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
       var pid = $template.querySelector('[data-test="pid"]');
       var lifeSpan = $template.querySelector('[data-test="lifeSpan"]');
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
@@ -269,11 +269,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
       var givenName = $template.querySelector('[data-test="given-name"]');
       var familyName = $template.querySelector('[data-test="family-name"]');
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
       expect(personCard).to.be.a('null');
@@ -295,11 +295,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
       expect(personCard).to.not.be.a('null');
@@ -321,11 +321,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
       var birthPlace = $template.querySelector('[data-test="birthPlace"]');
 
       expect(personCard).to.be.a('null');
@@ -347,12 +347,12 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
-      var birthPlace = $template.querySelector('[data-test="birthPlace"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
+      var birthPlace = $template.querySelector('[data-test="birthPlace"]').textContent;
 
       expect(personCard).to.be.a('null');
       expect(fullName).to.equal(person.name);
@@ -401,9 +401,9 @@ describe('fsPerson', function () {
         $template = fsModules.fsPersonVitals(person, {openPersonCard: true, lifeSpan: 'long'});
       }
 
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
 
       expect(fullName).to.equal('Angelo "Snaps" Provolone');
       expect(givenName).to.equal('Angelo "Snaps"');
@@ -447,11 +447,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
 
       expect(personCard).to.be.a('null');
       expect(fullName).to.equal(person.name);
@@ -471,11 +471,11 @@ describe('fsPerson', function () {
       }
 
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
       var pid = $template.querySelector('[data-test="pid"]');
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
 
       expect(personCard).to.be.a('null');
       expect(fullName).to.equal(person.name);
@@ -507,11 +507,11 @@ describe('fsPerson', function () {
 
       var portrait = $template.querySelector('img');
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
-      var pid = $template.querySelector('[data-test="pid"]').innerText;
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
 
       expect(portrait).to.not.be.a('null');
       expect(portrait.getAttribute('src')).to.equal(person.portraitUrl);
@@ -534,11 +534,11 @@ describe('fsPerson', function () {
 
       var portrait = $template.querySelector('img');
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
       var pid = $template.querySelector('[data-test="pid"]');
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
 
       expect(portrait).to.not.be.a('null');
       expect(portrait.getAttribute('src')).to.equal(person.portraitUrl);
@@ -595,18 +595,18 @@ describe('fsPerson', function () {
       expect(personCard.length).to.equal(0);
 
       // test husband data
-      expect(fullNames[0].innerText).to.equal(person.name);
-      expect(givenNames[0].innerText).to.equal('John');
-      expect(familyNames[0].innerText).to.equal('Doe');
-      expect(pids[0].innerText).to.equal(person.id);
-      expect(lifeSpans[0].innerText).to.equal(person.lifeSpan);
+      expect(fullNames[0].textContent).to.equal(person.name);
+      expect(givenNames[0].textContent).to.equal('John');
+      expect(familyNames[0].textContent).to.equal('Doe');
+      expect(pids[0].textContent).to.equal(person.id);
+      expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
 
       // test wife data
-      expect(fullNames[1].innerText).to.equal(person2.name);
-      expect(givenNames[1].innerText).to.equal('Jane');
-      expect(familyNames[1].innerText).to.equal('Doe');
-      expect(pids[1].innerText).to.equal(person2.id);
-      expect(lifeSpans[1].innerText).to.equal(person2.lifeSpan);
+      expect(fullNames[1].textContent).to.equal(person2.name);
+      expect(givenNames[1].textContent).to.equal('Jane');
+      expect(familyNames[1].textContent).to.equal('Doe');
+      expect(pids[1].textContent).to.equal(person2.id);
+      expect(lifeSpans[1].textContent).to.equal(person2.lifeSpan);
     });
 
     it('should transfer options properly to both persons', function() {
@@ -621,11 +621,11 @@ describe('fsPerson', function () {
 
       var portrait = $template.querySelector('img');
       var personCard = $template.querySelector('a[data-cmd="openPersonCard"]');
-      var fullName = $template.querySelector('[data-test="full-name"]').innerText;
-      var givenName = $template.querySelector('[data-test="given-name"]').innerText;
-      var familyName = $template.querySelector('[data-test="family-name"]').innerText;
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
       var pid = $template.querySelector('[data-test="pid"]');
-      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').innerText;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
 
       var personCard = $template.querySelectorAll('a[data-cmd="openPersonCard"]');
       var fullNames = $template.querySelectorAll('[data-test="full-name"]');
@@ -638,16 +638,16 @@ describe('fsPerson', function () {
       expect(pids.length).to.equal(0);
 
       // test husband data
-      expect(fullNames[0].innerText).to.equal(person.name);
-      expect(givenNames[0].innerText).to.equal('John');
-      expect(familyNames[0].innerText).to.equal('Doe');
-      expect(lifeSpans[0].innerText).to.equal(person.lifeSpan);
+      expect(fullNames[0].textContent).to.equal(person.name);
+      expect(givenNames[0].textContent).to.equal('John');
+      expect(familyNames[0].textContent).to.equal('Doe');
+      expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
 
       // test wife data
-      expect(fullNames[1].innerText).to.equal(person2.name);
-      expect(givenNames[1].innerText).to.equal('Jane');
-      expect(familyNames[1].innerText).to.equal('Doe');
-      expect(lifeSpans[1].innerText).to.equal(person2.lifeSpan);
+      expect(fullNames[1].textContent).to.equal(person2.name);
+      expect(givenNames[1].textContent).to.equal('Jane');
+      expect(familyNames[1].textContent).to.equal('Doe');
+      expect(lifeSpans[1].textContent).to.equal(person2.lifeSpan);
     });
 
   });
@@ -681,19 +681,19 @@ describe('fsPerson', function () {
       expect(personCard.length).to.equal(0);
 
       // test husband data
-      expect(fullNames[0].innerText).to.equal(person.name);
-      expect(givenNames[0].innerText).to.equal('John');
-      expect(familyNames[0].innerText).to.equal('Doe');
-      expect(pids[0].innerText).to.equal(person.id);
-      expect(lifeSpans[0].innerText).to.equal(person.lifeSpan);
+      expect(fullNames[0].textContent).to.equal(person.name);
+      expect(givenNames[0].textContent).to.equal('John');
+      expect(familyNames[0].textContent).to.equal('Doe');
+      expect(pids[0].textContent).to.equal(person.id);
+      expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
       expect(birthPlaces[0]).to.be.a('undefined');
 
       // test wife data
-      expect(fullNames[1].innerText).to.equal(person2.name);
-      expect(givenNames[1].innerText).to.equal('Jane');
-      expect(familyNames[1].innerText).to.equal('Doe');
-      expect(pids[1].innerText).to.equal(person2.id);
-      expect(lifeSpans[1].innerText).to.equal(person2.lifeSpan);
+      expect(fullNames[1].textContent).to.equal(person2.name);
+      expect(givenNames[1].textContent).to.equal('Jane');
+      expect(familyNames[1].textContent).to.equal('Doe');
+      expect(pids[1].textContent).to.equal(person2.id);
+      expect(lifeSpans[1].textContent).to.equal(person2.lifeSpan);
       expect(birthPlaces[1]).to.be.a('undefined');
     });
 
@@ -719,17 +719,17 @@ describe('fsPerson', function () {
       expect(pids.length).to.equal(0);
 
       // test husband data
-      expect(fullNames[0].innerText).to.equal(person.name);
-      expect(givenNames[0].innerText).to.equal('John');
-      expect(familyNames[0].innerText).to.equal('Doe');
-      expect(lifeSpans[0].innerText).to.equal(person.lifeSpan);
+      expect(fullNames[0].textContent).to.equal(person.name);
+      expect(givenNames[0].textContent).to.equal('John');
+      expect(familyNames[0].textContent).to.equal('Doe');
+      expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
       expect(birthPlaces[0]).to.be.an('undefined');
 
       // test wife data
-      expect(fullNames[1].innerText).to.equal(person2.name);
-      expect(givenNames[1].innerText).to.equal('Jane');
-      expect(familyNames[1].innerText).to.equal('Doe');
-      expect(lifeSpans[1].innerText).to.equal(person2.lifeSpan);
+      expect(fullNames[1].textContent).to.equal(person2.name);
+      expect(givenNames[1].textContent).to.equal('Jane');
+      expect(familyNames[1].textContent).to.equal('Doe');
+      expect(lifeSpans[1].textContent).to.equal(person2.lifeSpan);
       expect(birthPlaces[1]).to.be.an('undefined');
     });
 

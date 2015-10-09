@@ -50,27 +50,33 @@ window.fsModules = (function(module, angular, FS) {
       var value = parse(node.getAttribute(attrName), obj);
 
       if (!value) {
-        var temp = null;
+        var parent = null;
 
         // need to have a parentNode for this to work
         if (!node.parentNode) {
-          temp = document.createElement('div');
-          temp.appendChild(node);
+          parent = document.createElement('div');
+          parent.appendChild(node);
+        }
+        else {
+          parent = node.parentNode;
         }
 
         // move all child nodes to sibling nodes and remove it
         while(node.children.length) {
-          node.parentNode.insertBefore(node.children[0], node);
+          parent.insertBefore(node.children[0], node);
         }
-        node.parentNode.removeChild(node);
+        parent.removeChild(node);
 
-        return temp;
+        return parent;
       }
       else {
         node.removeAttribute(attrName);
+
+        return node;
       }
     },
 
+    'bindonce': removeAttribute,
     'bo-class': angularClass,
     'ng-class': angularClass,
     'bo-href': angularHref,
@@ -83,6 +89,17 @@ window.fsModules = (function(module, angular, FS) {
     'bo-src-i': angularSrc,
     'ng-src': angularSrc
   };
+
+  /**
+   * Remove bindonce attribute from pure fs-modules persons
+   *
+   * @since 2.1.1
+   */
+  function removeAttribute(node, attrName, obj) {
+    node.removeAttribute(attrName);
+
+    return node;
+  }
 
   /**
    * Add the class to the element

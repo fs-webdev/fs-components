@@ -228,10 +228,16 @@ describe('fsModules.parseTemplate', function() {
       return template;
     }], {restrict: 'E', replace: true});
 
+    // Firefox sets the order of attributes differently, so we won't do string comparisons but
+    // rather check that the required attributes are what we expected
     var str = '<div><test-dir-e class="test-dir-e" data-person="person" data-test="keep"></test-dir></div>';
-    var expected = '<div><div class="dirTemplate test-dir-e" data-test="keep"><span>' + obj.person.name + '</span><span>' + obj.person.id + '</span></div></div>';
+    var expected = document.createElement('div');
+    expected.innerHTML = '<div class="dirTemplate test-dir-e" data-test="keep"><span>' + obj.person.name + '</span><span>' + obj.person.id + '</span></div>';
+    var result = fsModules.parseTemplate(str, obj);
 
-    expect( fsModules.parseTemplate(str, obj).outerHTML ).to.equal(expected);
+    expect( result.firstChild.getAttribute('class') ).to.equal( expected.firstChild.getAttribute('class') );
+    expect( result.firstChild.getAttribute('data-test') ).to.equal( expected.firstChild.getAttribute('data-test') );
+    expect( result.firstChild.innerHTML ).to.equal( expected.firstChild.innerHTML );
 
     // clean up
     delete fsModules.testDirE;

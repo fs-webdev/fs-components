@@ -5,6 +5,8 @@ var path = require('path'),
 module.exports = function(config) {
   masterConf(config, {
     projectPath: projectPath,
+    // singleRun: true,
+    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
     testFiles: [
       'assets/js/fsModules.core/ngParser/assembly.json',
       'assets/js/fsModules.core/assembly.json',

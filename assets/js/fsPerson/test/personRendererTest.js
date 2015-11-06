@@ -309,6 +309,7 @@ describe('fsPerson', function () {
       expect(pid).to.equal(person.id);
       expect(lifeSpan).to.equal(person.lifeSpan);
       expect(birthPlace).to.be.a('null');
+      expect(personCard.href.indexOf(person.id)).to.not.equal(-1);
     });
 
     it('should output the full lifespan if options.lifeSpan is "long"', function() {

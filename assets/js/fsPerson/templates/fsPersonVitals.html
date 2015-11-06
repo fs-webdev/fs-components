@@ -1,7 +1,7 @@
 <div class="fs-person-vitals">
   <div data-fs-add-wrapper-if="person.id" title="{{title}}">
     <div class="fs-person-vitals__name" data-ng-class="nameConclusionStyle">
-      <a data-ng-href="'#view=ancestor&person=' + person.id" class="fs-person-vitals__link" data-fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data='{{openPersonCardData}}'>
+      <a data-ng-href="#view=ancestor&person={{person.id}}" class="fs-person-vitals__link" data-fs-add-wrapper-if="options.openPersonCard" data-cmd="openPersonCard" data-cmd-data='{{openPersonCardData}}'>
         <span class="fs-person-vitals__name--split" data-ng-if="person.nameConclusion.details.nameForms">
           <span class="fs-person-vitals__name-given" data-ng-bind-html="givenPart" data-test="given-name"></span><br>
           <span class="fs-person-vitals__name-family" data-ng-bind-html="familyPart" data-test="family-name"></span>

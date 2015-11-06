@@ -18,7 +18,7 @@
       </div>
       <span class="fs-person-details__birthPlace" data-ng-if="options.showBirthPlace && person.birthPlace" data-test="birthPlace" data-ng-bind-html="person.birthPlace"></span>
     </div>
-    <div class="fs-person__fs-person-parents" data-ng-if="options.showParents">
+    <div class="fs-person__fs-person-parents">
       <input id="fs-person-parents-{{uid}}" type="checkbox" class="fs-person-parents__show-button sr-only" data-ng-if="options.showParents && person.parents">
       <label for="fs-person-parents-{{uid}}" class="fs-person-parents__show-label" data-ng-if="options.showParents && person.parents">
         <span class="fs-person-parents__show-text">{BUTTON_SHOW_PARENTS}</span>

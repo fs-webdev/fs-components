@@ -6,7 +6,8 @@
           <span class="fs-person-vitals__name-given" data-ng-bind-html="givenPart" data-test="given-name"></span><br>
           <span class="fs-person-vitals__name-family" data-ng-bind-html="familyPart" data-test="family-name"></span>
         </span>
-        <span class="fs-person-vitals__name-full" data-ng-bind-html="name" data-test="full-name"></span>
+        <a data-ng-if="options.openPersonPage" class="fs-person-vitals__name-full" data-ng-bind-html="name" data-test="full-name" href="/tree/#view=ancestor&person={{person.id}}"></a>
+        <span data-ng-if="!options.openPersonPage" class="fs-person-vitals__name-full" data-ng-bind-html="name" data-test="full-name"></span>
       </a>
     </div>
     <div class="fs-person-vitals__fs-person-details">

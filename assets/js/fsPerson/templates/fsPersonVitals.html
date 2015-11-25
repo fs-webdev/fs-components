@@ -14,7 +14,7 @@
       <div class="fs-person-details__container">
         <span class="fs-person-details__lifeSpan" data-ng-if="!options.hideLifeSpan && lifeSpan" data-ng-bind-html="lifeSpan" data-test="lifeSpan"></span>
         <span class="fs-person-details__separator" data-ng-if="showDot">&nbsp;•&nbsp;</span>
-        <span class="fs-person-details__id" data-ng-if="!options.hideId && person.id" data-ng-bind-html="person.id" data-test="pid"></span>
+        <span class="fs-person-details__id" data-ng-if="!options.hideId && person.id" data-ng-bind-html="person.id" data-test="pid" aria-label="{{setAriaId()}}"></span>
         <span class="fs-person-details__selection-stopper">&#8203;</span>
       </div>
       <span class="fs-person-details__birthPlace" data-ng-if="options.showBirthPlace && person.birthPlace" data-test="birthPlace" data-ng-bind-html="person.birthPlace"></span>

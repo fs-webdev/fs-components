@@ -53,5 +53,14 @@ function fsPersonVitalsViewModel(scope) {
   }
   scope.title = FS.htmlDecode(scope.title);
 
+  scope.setAriaId = function() {
+    if(scope.person && scope.person.id) {
+      // strip out all non-letter and non-number characters and then add spaces between each letter
+      return scope.person.id.replace(/[^a-zA-Z0-9]/g, '').split('').join(' ');
+    } else {
+      return null;
+    }
+  }
+
   return scope;
 }

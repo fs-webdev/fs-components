@@ -8,7 +8,7 @@
 function fsPersonPortraitViewModel(scope) {
   scope.person = scope.person || {};
   scope.options = scope.options || {};
-
+  scope.portraitSize = scope.options.personCard ? "medium" : "large";
   scope.gender = (scope.person.gender || 'unknown').toLowerCase();
 
   return scope;

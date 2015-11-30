@@ -9,11 +9,6 @@ function fsPersonPortraitViewModel(scope) {
   scope.person = scope.person || {};
   scope.options = scope.options || {};
   scope.portraitSize = scope.options.personCard ? "medium" : "large";
-  if (scope.options.personCard) {
-    // person card should always link to the person page
-    scope.options.openPersonPage = true;
-  }
-
   scope.gender = (scope.person.gender || 'unknown').toLowerCase();
 
   return scope;

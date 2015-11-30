@@ -3,13 +3,11 @@
     "./viewModels/fsPersonVitals.viewModel.js",
     "./viewModels/fsPersonGender.viewModel.js",
     "./viewModels/fsPersonPortrait.viewModel.js",
-    "./viewModels/fsPersonCardPortrait.viewModel.js",
     "./viewModels/fsCoupleInfo.viewModel.js",
     "./viewModels/fsCouplePortrait.viewModel.js",
     "./fsPersonVitals.directive.js",
     "./fsPersonGender.directive.js",
     "./fsPersonPortrait.directive.js",
-    "./fsPersonCardPortrait.directive.js",
     "./fsCoupleInfo.directive.js",
     "./fsCouplePortrait.directive.js"
   ],

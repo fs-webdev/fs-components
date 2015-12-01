@@ -1,10 +1,10 @@
-<div class="fs-person-portrait" data-ng-class="{'fs-person--person-card': options.personCard}">
-  <div class="fs-person-portrait__container">
+<div class="fs-person-portrait">
+  <div class="fs-person-portrait__container" data-ng-class="{'fs-person--person-card': options.personCard}">
     <div class="fs-person-portrait__portrait fs-couple__connector fs-icon-before fs-icon-{{portraitSize}}-{{gender}}">
       <img class="fs-person-portrait__image" data-ng-if="person.portraitUrl" data-ng-src="{{person.portraitUrl}}" data-test="portrait">
     </div>
   </div>
-  <div class="fs-person-portrait__gender-wrapper">
+  <div class="fs-person-portrait__gender-wrapper" data-ng-class="{'fs-person--person-card': options.personCard}">
     <fs-person-gender data-person="person" data-options="options"></fs-person-gender>
   </div>
 </div>

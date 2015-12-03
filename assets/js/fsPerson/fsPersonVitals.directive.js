@@ -20,6 +20,7 @@ var uid = 0;  // unique id needed for show/hide parent label + input
  */
 fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(person, options) {
   var scope = fsPersonVitalsViewModel({person: person, options: options});
+  scope.openPersonCardCmd = null;
 
   scope.uid = uid++;
 
@@ -34,6 +35,11 @@ fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(per
   if (scope.options.showParents && scope.person.parents) {
     var parents = this.fsCoupleInfo(scope.person.parents.father, scope.person.parents.mother, {showParents: false, iconSize: 'small'});
     template.querySelector('.fs-person__fs-person-parents').appendChild(parents);
+  }
+
+  // Add data-cmd to person's name if option.openPersonCard is true and option.openPersonPage is false.
+  if (scope.options.openPersonCard && !scope.options.openPersonPage) {
+    scope.openPersonCardCmd = "openPersonCard";
   }
 
   return template;

@@ -24,6 +24,7 @@ angular.module('ngFsModules')
 
       scope.$watch('person', function fsPersonVitalsWatchAction() {
         scope = fsPersonVitalsViewModel(scope);
+        scope.openPersonCardCmd = null;
 
         // add parents in the link function since Angular will get into
         // an infinite state if it is added to the DOM (even behind and ng-if).
@@ -32,6 +33,11 @@ angular.module('ngFsModules')
         if (scope.options.showParents && scope.person.parents) {
           var parents = $compile('<fs-couple-info data-husband="person.parents.father" data-wife="person.parents.mother" data-config="{showParents: false, iconSize: \'small\'}"></fs-couple-info>')(scope);
           element.find('.fs-person__fs-person-parents').append(parents);
+        }
+
+        // Add data-cmd to person's name if option.openPersonCard is true and option.openPersonPage is false.
+        if (scope.options.openPersonCard && !scope.options.openPersonPage) {
+          scope.openPersonCardCmd = "openPersonCard";
         }
       });
     }

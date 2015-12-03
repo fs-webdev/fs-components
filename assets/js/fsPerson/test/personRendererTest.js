@@ -312,6 +312,59 @@ describe('fsPerson', function () {
       expect(personCard.href.indexOf(person.id)).to.not.equal(-1);
     });
 
+    it('should not have an anchor tag with data-cmd="openPersonCard" if options.openPersonCard is not passed in, but options.openPersonPage is', function() {
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {openPersonPage: true});
+      }
+
+      var personCard = $template.querySelector('a[data-cmd]');
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
+      var birthPlace = $template.querySelector('[data-test="birthPlace"]');
+
+      expect(personCard).to.not.be.a('null');
+      expect(fullName).to.equal(person.name);
+      expect(givenName).to.equal('John');
+      expect(familyName).to.equal('Doe');
+      expect(pid).to.equal(person.id);
+      expect(lifeSpan).to.equal(person.lifeSpan);
+      expect(birthPlace).to.be.a('null');
+      expect(personCard.href.indexOf(person.id)).to.not.equal(-1);
+    });
+
+    it('should not have an anchor tag if options.openPersonCard or options.openPersonPage are not passed in', function() {
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {});
+      }
+
+      var personCard = $template.querySelector('a[data-cmd]');
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
+      var birthPlace = $template.querySelector('[data-test="birthPlace"]');
+
+      expect(personCard).to.be.a('null');
+      expect(fullName).to.equal(person.name);
+      expect(givenName).to.equal('John');
+      expect(familyName).to.equal('Doe');
+      expect(pid).to.equal(person.id);
+      expect(lifeSpan).to.equal(person.lifeSpan);
+      expect(birthPlace).to.be.a('null');
+    });
+
     it('should output the full lifespan if options.lifeSpan is "long"', function() {
       if (isAngularTest) {
         $scope.person = person;

@@ -18,8 +18,8 @@
  *
  * @since 1.1.0
  */
-fsModules.registerDirective('fsPersonGender', ['person', 'options', function(person, options) {
-  var scope = fsPersonGenderViewModel({person: person, options: options});
+fsModules.registerDirective('fsPersonGender', ['person', 'father', 'mother', 'spouse', 'options', function(person, father, mother, spouse, options) {
+  var scope = fsPersonGenderViewModel({person: person, father: father, mother: mother, spouse: spouse, options: options});
 
   // convert the angular template
   var templateStr = templateList.fsPersonGender;

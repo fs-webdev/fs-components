@@ -18,8 +18,8 @@ var uid = 0;  // unique id needed for show/hide parent label + input
  *
  * @since 1.3.0
  */
-fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(person, options) {
-  var scope = fsPersonVitalsViewModel({person: person, options: options});
+fsModules.registerDirective('fsPersonVitals', ['person', 'father', 'mother', 'spouse', 'options', function(person, father, mother, spouse, options) {
+  var scope = fsPersonVitalsViewModel({person: person, father: father, mother: mother, spouse: spouse, options: options});
   scope.openPersonCardCmd = null;
 
   // Add data-cmd to person's name if option.openPersonCard is true and option.openPersonPage is false.

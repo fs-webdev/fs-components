@@ -11,6 +11,9 @@ angular.module('ngFsModules')
     template: templateList.fsPersonGender,
     scope: {
       person: '=',
+      father: "=?",
+      mother: "=?",
+      spouse: "=?",
       config: '&'
     },
     link: function(scope, element, attrs) {

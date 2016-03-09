@@ -13,7 +13,10 @@ angular.module('ngFsModules')
     template: getTemplateStr('fsPersonVitals'),
     scope: {
       person: '=',
-      config: '&',
+      father: "=?",
+      mother: "=?",
+      spouse: "=?",
+      config: '&'
     },
     link: function(scope, element, attrs) {
       scope.options = scope.config() || {};

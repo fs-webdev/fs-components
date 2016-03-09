@@ -11,6 +11,9 @@ angular.module('ngFsModules')
     template: templateList.fsPersonPortrait,
     scope: {
       person: '=',
+      father: "=?",
+      mother: "=?",
+      spouse: "=?",
       config: '&'
     },
     link: function(scope, element, attrs) {

@@ -1,6 +1,9 @@
 /**
  * Translate person and options data into template variables.
  * @param {object} scope - The object to use as the scope.
+ * @property {string} [scope.options.father] - Either passed through in the template config, or created from the person.fatherId property
+ * @property {string} [scope.options.mother] - Either passed through in the template config, or created from the person.motherId property
+ * @property {string} [scope.options.spouse] - Either passed through in the template config, or created from the person.spouseId property
  * @returns {object} The scope object to use in the template.
  *
  * @since 1.1.0

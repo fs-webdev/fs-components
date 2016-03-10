@@ -18,8 +18,8 @@
  *
  * @since 1.1.0
  */
-fsModules.registerDirective('fsPersonPortrait', ['person', 'father', 'mother', 'spouse', 'options', function(person, father, mother, spouse, options) {
-  var scope = fsPersonPortraitViewModel({person: person, father: father, mother: mother, spouse: spouse, options: options});
+fsModules.registerDirective('fsPersonPortrait', ['person', 'options', function(person, options) {
+  var scope = fsPersonPortraitViewModel({person: person, options: options});
 
   // the iconSmall must be set to 'small' when combined with the portrait
   scope.options.iconSize = 'small';

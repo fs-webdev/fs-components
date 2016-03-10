@@ -11,9 +11,6 @@ function fsPersonGenderViewModel(scope) {
   };
 
   scope.person = scope.person || {};
-  scope.father = scope.father || undefined;
-  scope.mother = scope.mother || undefined;
-  scope.spouse = scope.spouse || undefined;
   scope.options = fsModules.extend({}, defaultOptions, scope.options)
 
   scope.genderClass = (!scope.options.hideGender ? 'fs-person-gender--' + scope.options.iconSize : '');

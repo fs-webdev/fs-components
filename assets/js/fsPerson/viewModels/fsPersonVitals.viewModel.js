@@ -6,11 +6,17 @@
  * @since 1.1.0
  */
 function fsPersonVitalsViewModel(scope) {
+  if (!scope.person || Object.getOwnPropertyNames(scope.person).length === 0) {
+    delete scope.options.father;
+    delete scope.options.mother;
+    delete scope.options.spouse;
+  }
+
   scope.person = scope.person || {};
-  scope.father = scope.father || undefined;
-  scope.mother = scope.mother || undefined;
-  scope.spouse = scope.spouse || undefined;
   scope.options = scope.options || {};
+  scope.options.father = scope.options.father || scope.person.fatherId || undefined;
+  scope.options.mother = scope.options.mother || scope.person.motherId || undefined;
+  scope.options.spouse = scope.options.spouse || scope.person.spouseId || undefined;
 
   scope.name = '';
   scope.givenPart = '';
@@ -39,14 +45,14 @@ function fsPersonVitalsViewModel(scope) {
 
 // OFT-66060 - https://almtools.ldschurch.org/fhjira/browse/OFT-66060
 // Need to pass in the parents and spouse to the person card to get the correct ordinances and to the person page link to show the correct family
-  scope.personPageLink = "/tree/#view=ancestor&person=" + scope.person.id + ((scope.spouse)? "&spouse=" + scope.spouse: "") + ((scope.father || scope.mother)? "&parents=" + (scope.father || "UNKNOWN") + "_" + (scope.mother || "UNKNOWN"): "");
+  scope.personPageLink = "/tree/#view=ancestor&person=" + scope.person.id + ((scope.options.spouse)? "&spouse=" + scope.options.spouse: "") + ((scope.options.father || scope.options.mother)? "&parents=" + (scope.options.father || "UNKNOWN") + "_" + (scope.options.mother || "UNKNOWN"): "");
 
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,
     "name": scope.person.name,
-    "fatherId": scope.father,
-    "motherId": scope.mother,
-    "spouseId": scope.spouse,
+    "fatherId": scope.options.father,
+    "motherId": scope.options.mother,
+    "spouseId": scope.options.spouse,
     "gender": scope.person.gender,
     "linksInNewTab": scope.options.linksInNewTab
   });

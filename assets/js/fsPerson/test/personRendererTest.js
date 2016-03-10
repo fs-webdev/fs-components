@@ -62,6 +62,12 @@ var parentsAndSpousePerson = fsModules.extend({}, personObj, {
     motherId: "MOTHER-ID",
     spouseId: "SPOUSE-ID"
 });
+var onlyOneParentPerson = fsModules.extend({}, personObj, {
+    fatherId: "FATHER-ID"
+});
+var onlySpousePerson = fsModules.extend({}, personObj, {
+    spouseId: "SPOUSE-ID"
+});
 
 
 
@@ -489,13 +495,10 @@ describe('fsPerson', function () {
     it('should include father, mother and spouse ID\'s in scope.personPageLink and data-cmd-data', function() {
       if (isAngularTest) {
         $scope.person = parentsAndSpousePerson;
-        $scope.father = "FATHER-ID";
-        $scope.mother = "MOTHER-ID";
-        $scope.spouse = "SPOUSE-ID";
-        compileDirective('<fs-person-vitals data-person="person" data-father="father" data-mother="mother" data-spouse="spouse" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true, father: \'FATHER-ID\', mother: \'MOTHER-ID\', spouse: \'SPOUSE-ID\'}"></fs-person-vitals>');
       }
       else {
-        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true});
+        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true, father: "FATHER-ID", mother: "MOTHER-ID", spouse: "SPOUSE-ID"});
       }
 
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
@@ -507,12 +510,11 @@ describe('fsPerson', function () {
 
     it('should handle single parents when setting parent ID\'s in scope.personPageLink and data-cmd-data', function() {
       if (isAngularTest) {
-        $scope.person = parentsAndSpousePerson;
-        $scope.father = "FATHER-ID";
-        compileDirective('<fs-person-vitals data-person="person" data-father="father" data-mother="mother" data-spouse="spouse" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        $scope.person = onlyOneParentPerson;
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true, father: \'FATHER-ID\'}"></fs-person-vitals>');
       }
       else {
-        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true});
+        $template = fsModules.fsPersonVitals(onlyOneParentPerson, {openPersonCard: true, father: "FATHER-ID"});
       }
 
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
@@ -524,12 +526,11 @@ describe('fsPerson', function () {
 
     it('should handle just a spouse when setting spouse ID in scope.personPageLink and data-cmd-data', function() {
       if (isAngularTest) {
-        $scope.person = parentsAndSpousePerson;
-        $scope.spouse = "SPOUSE-ID";
-        compileDirective('<fs-person-vitals data-person="person" data-father="father" data-mother="mother" data-spouse="spouse" bindonce="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+        $scope.person = onlySpousePerson;
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{openPersonCard: true, spouse: \'SPOUSE-ID\'}"></fs-person-vitals>');
       }
       else {
-        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true});
+        $template = fsModules.fsPersonVitals(onlySpousePerson, {openPersonCard: true, spouse: "SPOUSE-ID"});
       }
 
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;

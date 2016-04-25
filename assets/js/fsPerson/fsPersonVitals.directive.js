@@ -48,7 +48,7 @@ fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(per
   if (scope.person && scope.person.name && scope.options.nameWrapper) {
       var name = template.querySelector('.fs-person-vitals__name');
       var wrap = '<' + scope.options.nameWrapper + ' style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
-      name.parentElement.childNodes[1].innerHTML = wrap;
+      name.innerHTML = wrap;
   }
 
   return template;

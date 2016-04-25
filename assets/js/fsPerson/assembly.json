@@ -11,8 +11,6 @@
     "./fsCoupleInfo.directive.js",
     "./fsCouplePortrait.directive.js"
   ],
-  "simpleWrap": true,
-  "templatePath": "./templates",
   "localePath": "../locales",
   "localeFileName": "fs-modules"
 }

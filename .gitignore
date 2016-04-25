@@ -12,3 +12,7 @@ builtAssets
 npm-debug.log
 .idea
 .env
+
+components
+dist
+build

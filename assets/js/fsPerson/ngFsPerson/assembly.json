@@ -11,8 +11,9 @@
     "./ngFsCoupleInfo.directive.js",
     "./ngFsCouplePortrait.directive.js"
   ],
-  "simpleWrap": true,
-  "templatePath": "../templates",
+  "templates": [
+    "../templates/*.html"
+  ],
   "localePath": "../../locales",
   "localeFileName": "fs-modules"
 }

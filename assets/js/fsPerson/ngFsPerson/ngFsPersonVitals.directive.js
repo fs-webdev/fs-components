@@ -6,7 +6,7 @@
 var uid = 0;  // unique id needed for show/hide parent label + input
 
 angular.module('ngFsModules')
-       .directive('fsPersonVitals', ['$compile', function($compile) {
+       .directive('fsPersonVitals', ['$compile', '$timeout', function($compile, $timeout) {
   return {
     restrict: 'E',
     replace: true,
@@ -38,6 +38,15 @@ angular.module('ngFsModules')
         // Add data-cmd to person's name if option.openPersonCard is true and option.openPersonPage is false.
         if (scope.options.openPersonCard && !scope.options.openPersonPage) {
           scope.openPersonCardCmd = "openPersonCard";
+        }
+
+        // Add name-wrapper functionality
+        if (scope.person && scope.person.id && scope.options.nameWrapper) {
+          $timeout(function(){
+            var name = element.find('.fs-person-vitals__name')[0];
+            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name" style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
+            element.find('.fs-person-vitals__name').replaceWith($(wrap));
+          },0);
         }
       });
     }

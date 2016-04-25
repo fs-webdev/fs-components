@@ -13,6 +13,7 @@ var uid = 0;  // unique id needed for show/hide parent label + input
  * @property {string}  [options.lifeSpan=short] - Show the short or the full lifeSpan (short,long).
  * @property {boolean} [options.hideId=false] - Hide the person id.
  * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
+ * @property {boolean} [options.nameWrapper='h3'] - Replace the div surrounding the name of the person with a heading tag (h3, h4, h5, etc.)
  *
  * @returns {element}
  *
@@ -40,6 +41,14 @@ fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(per
   if (scope.options.showParents && scope.person.parents) {
     var parents = this.fsCoupleInfo(scope.person.parents.father, scope.person.parents.mother, {showParents: false, iconSize: 'small'});
     template.querySelector('.fs-person__fs-person-parents').appendChild(parents);
+  }
+
+  // Functionality for name wrapper option
+  // NOTE: in order for this to work for the person summary, the fs-person-vitals__name class must be left off of the name wrapper in order for the correct font size to show.
+  if (scope.person && scope.person.name && scope.options.nameWrapper) {
+      var name = template.querySelector('.fs-person-vitals__name');
+      var wrap = '<' + scope.options.nameWrapper + ' style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
+      name.parentElement.childNodes[1].innerHTML = wrap;
   }
 
   return template;

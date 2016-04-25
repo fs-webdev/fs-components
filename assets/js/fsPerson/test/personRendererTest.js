@@ -77,21 +77,23 @@ var onlySpousePerson = fsModules.extend({}, personObj, {
 // fsPerson
 //--------------------------------------------------
 describe('fsPerson', function () {
-  var $templatem, person;
+  var $template, person;
 
   // set up the angular module
   if (isAngularTest) {
     var $compile;
     var $scope;
     var $$asyncCallback;
+    var $timeout;
 
     beforeEach(window.module('ngFsModules'));
     beforeEach(window.module('pasvaz.bindonce'));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$$asyncCallback_){
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$$asyncCallback_, _$timeout_){
       $compile = _$compile_;
       $scope = _$rootScope_;
       $$asyncCallback = _$$asyncCallback_;
+      $timeout = _$timeout_;
     }));
 
     function compileDirective(template) {
@@ -374,6 +376,33 @@ describe('fsPerson', function () {
       expect(pid).to.equal(person.id);
       expect(lifeSpan).to.equal(person.lifeSpan);
       expect(birthPlace).to.be.a('null');
+    });
+
+    it('should have an h3 tag with options.nameWrapper is h3', function() {
+      if (isAngularTest) {
+        $scope.person = person;
+        compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{nameWrapper: \'h3\'}"></fs-person-vitals>');
+        $timeout.flush();
+      }
+      else {
+        $template = fsModules.fsPersonVitals(person, {nameWrapper: "h3"});
+      }
+
+      var fullName = $template.querySelector('[data-test="full-name"]').textContent;
+      var givenName = $template.querySelector('[data-test="given-name"]').textContent;
+      var familyName = $template.querySelector('[data-test="family-name"]').textContent;
+      var pid = $template.querySelector('[data-test="pid"]').textContent;
+      var lifeSpan = $template.querySelector('[data-test="lifeSpan"]').textContent;
+      var birthPlace = $template.querySelector('[data-test="birthPlace"]');
+      var wrapper = $template.querySelector('h3');
+
+      expect(fullName, "full name was incorrect").to.equal(person.name);
+      expect(givenName, "given name was incorrect").to.equal('John');
+      expect(familyName, "family name was incorrect").to.equal('Doe');
+      expect(pid, "pid was incorrect").to.equal(person.id);
+      expect(lifeSpan, "lifespan was incorrect").to.equal(person.lifeSpan);
+      expect(birthPlace, "birthPlace was not null").to.be.a('null');
+      expect(wrapper, "wrapper was not set").to.not.be.a('null');
     });
 
     it('should output the full lifespan if options.lifeSpan is "long"', function() {

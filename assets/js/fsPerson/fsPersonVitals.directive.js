@@ -13,7 +13,7 @@ var uid = 0;  // unique id needed for show/hide parent label + input
  * @property {string}  [options.lifeSpan=short] - Show the short or the full lifeSpan (short,long).
  * @property {boolean} [options.hideId=false] - Hide the person id.
  * @property {boolean} [options.openPersonCard=false] - Add a link to open the person card when the name is clicked.
- * @property {boolean} [options.nameWrapper='h3'] - Replace the div surrounding the name of the person with a heading tag (h3, h4, h5, etc.)
+ * @property {boolean} [options.nameWrapper] - Replace the div surrounding the name of the person with a heading tag (h3, h4, h5, etc.)
  *
  * @returns {element}
  *

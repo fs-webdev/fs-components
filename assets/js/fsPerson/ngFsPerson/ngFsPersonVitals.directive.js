@@ -45,7 +45,7 @@ angular.module('ngFsModules')
           $timeout(function(){
             var pidWrapper = element.find('[data-fs-add-wrapper-if][title]');
             var name = element.find('.fs-person-vitals__name')[0];
-            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name" data-ng-class="nameConclusionStyle" style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
+            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name ' + scope.nameConclusionStyle + '" style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
 
             if (pidWrapper.find('.fs-person-vitals__name')[0]) {
               pidWrapper.find('.fs-person-vitals__name').replaceWith($(wrap));

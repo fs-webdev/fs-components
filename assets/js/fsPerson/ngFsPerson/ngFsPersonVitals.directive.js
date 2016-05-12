@@ -41,7 +41,7 @@ angular.module('ngFsModules')
         }
 
         // Add name-wrapper functionality
-        if (scope.person && scope.person.id && scope.options.nameWrapper) {
+        if (scope.person && scope.person.name && scope.options.nameWrapper) {
           $timeout(function(){
             var pidWrapper = element.find('[data-fs-add-wrapper-if][title]');
             var name = element.find('.fs-person-vitals__name')[0];

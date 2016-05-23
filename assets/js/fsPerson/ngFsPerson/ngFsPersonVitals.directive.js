@@ -40,30 +40,6 @@ angular.module('ngFsModules')
           scope.openPersonCardCmd = "openPersonCard";
         }
 
-        // Add name-wrapper functionality
-        if (scope.person && scope.person.name && scope.options.nameWrapper) {
-          $timeout(function(){
-            var pidWrapper = element.find('[data-fs-add-wrapper-if][title]');
-            var name = element.find('.fs-person-vitals__name')[0];
-            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name ' + scope.nameConclusionStyle + '" style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
-
-            if (pidWrapper.find('.fs-person-vitals__name')[0]) {
-              pidWrapper.find('.fs-person-vitals__name').replaceWith($(wrap));
-            } else {
-              //Hack for race condition. About 10% of the time, the name will be placed as a sibling to the pid wrapper instead of as a child to it. This is to help remedy that.
-              setTimeout(function(){
-                // Check again for the name
-                if (pidWrapper.find('.fs-person-vitals__name')[0]) {
-                  pidWrapper.find('.fs-person-vitals__name').replaceWith($(wrap));
-                } else {
-                  // Manually move the name into the wrapper
-                  name.parentNode.removeChild(name);
-                  pidWrapper[0].insertBefore($(wrap)[0], pidWrapper.children()[0])
-                }
-              }, 100);
-            }
-          },0);
-        }
       });
     }
   };

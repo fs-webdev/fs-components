@@ -382,6 +382,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         compileDirective('<fs-person-vitals data-person="person" bindonce="person" data-config="{nameWrapper: \'h3\'}"></fs-person-vitals>');
+        $timeout.flush();
       }
       else {
         $template = fsModules.fsPersonVitals(person, {nameWrapper: "h3"});

@@ -11,8 +11,7 @@
     "!assets/**/*.*"
   ],
   "dependencies": {
-    "fs-styles": "git+https://github.com/fs-webdev/fs-styles#^1.x.x",
-    "theme-engage": "git+https://github.com/fs-webdev/theme-engage.git#bifrost"
+    "fs-styles": "git+https://github.com/fs-webdev/fs-styles#^1.x.x"
   },
   "private": true
 }

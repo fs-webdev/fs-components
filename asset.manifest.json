@@ -1,5 +1,4 @@
-{
-  "bowerFiles": [
-    "/components/fs-modules/assets/**/*.*"
-  ]
-}
+[
+  "/components/fs-modules/assets/**/*.*"
+]
+

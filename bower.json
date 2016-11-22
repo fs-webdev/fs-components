@@ -8,7 +8,8 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "ignore": [
     "*",
-    "!assets/**/*.*"
+    "!assets/**/*.*",
+    "!asset.manifest.json"
   ],
   "dependencies": {
     "fs-styles": "git+https://github.com/fs-webdev/fs-styles#^1.x.x"

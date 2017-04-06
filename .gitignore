@@ -1,4 +1,5 @@
 node_modules
+reports
 target
 .DS_Store
 builtAssets
@@ -9,6 +10,7 @@ builtAssets
 *.iml
 *.ipr
 *.iws
+.vscode/*
 npm-debug.log
 .idea
 .env

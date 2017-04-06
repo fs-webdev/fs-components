@@ -1,6 +1,8 @@
 fs-modules
 =============
 
+[![Code Climate](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/badges/f846a7e8aaae36fb8afb/gpa.svg)](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/feed) [![Test Coverage](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/badges/f846a7e8aaae36fb8afb/coverage.svg)](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/coverage) [![Issue Count](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/badges/f846a7e8aaae36fb8afb/issue_count.svg)](https://codeclimate.com/repos/58e6464f4c0bf50273001c24/feed) [![Build Status](https://travis-ci.org/fs-webdev/fs-modules.svg?branch=master)](https://travis-ci.org/fs-webdev/fs-modules)
+
 JavaScript and Angular modules that work in conjunction with [fs-webdev/fs-styles](https://github.com/fs-webdev/fs-styles) for the FamilySearch.org website.
 
 ## Why JavaScript Modules
@@ -26,9 +28,9 @@ Each module contains the JavaScript files needed for the module, a folder contai
 ```
 js
 ├─ fsModules.core - core JavaScript functionality needed to parse angular style templates
-|  ├─ ngFsModules.core - core Angular module and directives 
+|  ├─ ngFsModules.core - core Angular module and directives
 |  └─ tests - fsModules.core tests that are run in both JavaScript and Angular
-| 
+|
 ├─ myModule - JavaScript module
 |  ├─ ngMyModule - Angular directives
 |  ├─ templates - Angular templates shared between JavaScript and Angular
@@ -38,7 +40,7 @@ js
 ├─ fsModules - includes the JavaScript core and all JavaScript modules (fsPerson, etc.)
 |  └─ ngFsModules - includes the Angular core and all Angular modules (ngFsPerson, etc.)
 |
-├─ locales - locale files for all modules 
+├─ locales - locale files for all modules
 └─ utils - utility functions shared between JavaScript and Angular
 ```
 

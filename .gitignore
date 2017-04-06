@@ -10,6 +10,7 @@ builtAssets
 *.iml
 *.ipr
 *.iws
+.vscode/*
 npm-debug.log
 .idea
 .env

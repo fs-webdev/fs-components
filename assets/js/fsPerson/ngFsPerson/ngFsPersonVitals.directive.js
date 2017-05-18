@@ -44,8 +44,24 @@ angular.module('ngFsModules')
         if (scope.person && scope.person.name && scope.options.nameWrapper) {
           $timeout(function(){
             var pidWrapper = element.find('[data-fs-add-wrapper-if][title]');
-            var name = element.find('.fs-person-vitals__name')[0];
-            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name ' + scope.nameConclusionStyle + '" style="padding:0; margin:0;">' + name.innerHTML + '</' + scope.options.nameWrapper + '>';
+            var nameContainer = element.find('.fs-person-vitals__name')[0];
+
+            // OFT-69190 - Fix name not properly re-rendering. Passive placeholder data is not being overwritten by active data coming back from endpoints.
+            var displayedName = element.find('.fs-person-vitals__name-full')[0] ? element.find('.fs-person-vitals__name-full')[0].innerHTML: '';
+            // If the name being rendered is not the name that should be rendered, replace it.
+            if (displayedName !== scope.person.name) {
+              // Display the name in the full-name span.
+              element.find('.fs-person-vitals__name-full')[0].innerHTML = scope.person.name;
+              // Check if there's a wrapper with data-cmd-data and update it to match.
+              var anchorWrapper = element.find('.fs-person-vitals__name a')[0];
+              if (anchorWrapper && anchorWrapper.hasAttribute('data-cmd-data')) {
+                var cmdData = JSON.parse(anchorWrapper.getAttribute('data-cmd-data'));
+                cmdData.name = scope.person.name;
+                anchorWrapper.setAttribute('data-cmd-data', JSON.stringify(cmdData));
+              }
+            }
+
+            var wrap = '<' + scope.options.nameWrapper + ' class="fs-person-vitals__name ' + scope.nameConclusionStyle + '" style="padding:0; margin:0;">' + nameContainer.innerHTML + '</' + scope.options.nameWrapper + '>';
 
             if (pidWrapper.find('.fs-person-vitals__name')[0]) {
               pidWrapper.find('.fs-person-vitals__name').replaceWith($(wrap));
@@ -56,8 +72,8 @@ angular.module('ngFsModules')
                 if (pidWrapper.find('.fs-person-vitals__name')[0]) {
                   pidWrapper.find('.fs-person-vitals__name').replaceWith($(wrap));
                 } else {
-                  // Manually move the name into the wrapper
-                  name.parentNode.removeChild(name);
+                  // Manually move the nameContainer into the wrapper
+                  nameContainer.parentNode.removeChild(nameContainer);
                   pidWrapper[0].insertBefore($(wrap)[0], pidWrapper.children()[0])
                 }
               }, 100);

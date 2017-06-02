@@ -1,24 +1,28 @@
 var path = require('path'),
-    projectPath = path.resolve(__dirname, '..'),
-    masterConf = require(path.join(projectPath, 'node_modules/frontier-build-tools/test/fskarma10-config'));
+    basePath = path.resolve(__dirname, '..'),
+    masterConf = require(path.join(basePath, 'node_modules/frontier-build-tools/test/karma.config'));
 
 module.exports = function(config) {
   masterConf(config, {
-    projectPath: projectPath,
-    // singleRun: true,
-    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
-    testFiles: [
-      'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular.js',
-      'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-mocks.js',
-      'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-sanitize.js',
-      'node_modules/theme-engage/vendor/angularjs/js/angular-1.2.16/angular-animate.js',
-      'assets/js/utils/runTestWithAngular.js',
-      'assets/js/fsModules.core/assembly.json',
-      'assets/js/fsModules.core/ngFsModules.core/assembly.json',
-      'assets/js/fsPerson/ngFsPerson/assembly.json',
+    basePath: basePath,
+    files: [
+      'dist/components/hf/assets/js/fs/fs.js',
+      'dist/components/angular/angular.js',
+      'dist/components/angular-mocks/angular-mocks.js',
+      'dist/components/angular-sanitize/angular-sanitize.js',
+      'dist/components/angular-animate/angular-animate.js',
+      'dist/modules/utils/runTestWithAngular.js',
+      'dist/modules/fsModules.core/fsModules.core.js',
+      'dist/modules/fsModules/ngFsModules/ngFsModules.js',
 
-      'assets/js/fsModules.core/test/*Test.js',
-      'assets/js/fsPerson/test/*Test.js',
-    ]
+      'assets/modules/fsModules.core/test/*Test.js',
+      'assets/modules/fsPerson/test/*Test.js',
+    ],
+    frameworks: [ 'chai' ],
+    browsers: [ 'PhantomJS' ],
+    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
+    // singleRun: true,
+
+    reporters: ['dots'],
   });
 }

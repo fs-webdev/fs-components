@@ -9,10 +9,21 @@
   "ignore": [
     "*",
     "!assets/**/*.*",
-    "!asset.manifest.json"
+    "!asset.manifest.json",
+    "!test/tests/*.*"
   ],
   "dependencies": {
     "fs-styles": "git+https://github.com/fs-webdev/fs-styles#^1.x.x"
+  },
+  "devDependencies": {
+    "angular": "~1.2.32",
+    "angular": "~1.2.32",
+    "angular-animate": "~1.2.32",
+    "angular-mocks": "~1.2.32",
+    "angular-sanitize": "~1.2.32",
+    "hf": "git+https://github.com/fs-webdev/hf.git#2.4.5",
+    "inject": "^0.7.2",
+    "jquery-ui": "jqueryui#1.10.4"
   },
   "private": true
 }

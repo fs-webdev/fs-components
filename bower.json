@@ -9,8 +9,7 @@
   "ignore": [
     "*",
     "!assets/**/*.*",
-    "!asset.manifest.json",
-    "!test/tests/*.*"
+    "!asset.manifest.json"
   ],
   "dependencies": {
     "fs-styles": "git+https://github.com/fs-webdev/fs-styles#^1.x.x"

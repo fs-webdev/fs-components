@@ -7,6 +7,7 @@ var personObj = {
   name: 'John Doe',
   gender: 'MALE',
   id: '1234-567',
+  isLiving: false,
   lifeSpan: '1900-1960',
   fullLifeSpan: '1 January 1900 &ndash; 1 December 1960',
   birthPlace: 'Smallville, Kansas',
@@ -26,6 +27,7 @@ var person2 = {
   name: 'Jane Doe',
   gender: 'FEMALE',
   id: 'bdfg-hjk',
+  isLiving: false,
   lifeSpan: '1920-1980',
   fullLifeSpan: '11 January 1920 &ndash; 11 December 1980',
   birthPlace: 'Gotham City',
@@ -53,6 +55,7 @@ var noNamePerson = fsModules.extend({}, personObj, {
       }
     }
   });
+var livingPerson = fsModules.extend({}, personObj, {isLiving: true});
 var nameWithSpacePerson = fsModules.extend({}, personObj, {name: " "});
 var noIdPerson = fsModules.extend({}, personObj, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, personObj, {nameConclusion: null});
@@ -533,7 +536,7 @@ describe('fsPerson', function () {
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
       expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&spouse=SPOUSE-ID&parents=FATHER-ID_MOTHER-ID');
-      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","fatherId":"FATHER-ID","motherId":"MOTHER-ID","spouseId":"SPOUSE-ID","gender":"MALE"}');
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","fatherId":"FATHER-ID","motherId":"MOTHER-ID","spouseId":"SPOUSE-ID","gender":"MALE"}');
     });
 
     it('should handle single parents when setting parent ID\'s in scope.personPageLink and data-cmd-data', function() {
@@ -549,7 +552,7 @@ describe('fsPerson', function () {
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
       expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&parents=FATHER-ID_UNKNOWN');
-      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","fatherId":"FATHER-ID","gender":"MALE"}');
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","fatherId":"FATHER-ID","gender":"MALE"}');
     });
 
     it('should handle just a spouse when setting spouse ID in scope.personPageLink and data-cmd-data', function() {
@@ -565,7 +568,21 @@ describe('fsPerson', function () {
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
       expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&spouse=SPOUSE-ID');
-      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","spouseId":"SPOUSE-ID","gender":"MALE"}');
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","spouseId":"SPOUSE-ID","gender":"MALE"}');
+    });
+
+    it('should set isLiving correctly in data-cmd-data', function() {
+      if (isAngularTest) {
+        $scope.person = livingPerson;
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true}"></fs-person-vitals>');
+      }
+      else {
+        $template = fsModules.fsPersonVitals(livingPerson, {openPersonCard: true});
+      }
+
+      var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
+
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":true,"name":"John Doe","gender":"MALE"}');
     });
 
   });

@@ -52,6 +52,7 @@ function fsPersonVitalsViewModel(scope) {
 
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,
+    "isLiving": scope.person.isLiving,
     "name": scope.person.name,
     "fatherId": scope.options.father,
     "motherId": scope.options.mother,

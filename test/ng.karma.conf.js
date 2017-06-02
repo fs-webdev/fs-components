@@ -23,6 +23,6 @@ module.exports = function(config) {
     // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
     // singleRun: true,
 
-    reporters: ['dots'],
+    reporters: ['dots']
   });
 }

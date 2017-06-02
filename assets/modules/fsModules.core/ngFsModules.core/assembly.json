@@ -2,8 +2,7 @@
   "files": [
     "./ngFsModules.module.js",
     "../../utils/fsModules.utils.js",
-    "./ngFsModules.directives.js",
-    "./vendor/bindonce.js"
+    "./ngFsModules.directives.js"
   ],
   "simpleWrap": true
 }

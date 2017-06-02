@@ -1,19 +1,24 @@
 var path = require('path'),
-    projectPath = path.resolve(__dirname, '..'),
-    masterConf = require(path.join(projectPath, 'node_modules/frontier-build-tools/test/fskarma10-config'));
+    basePath = path.resolve(__dirname, '..'),
+    masterConf = require(path.join(basePath, 'node_modules/frontier-build-tools/test/karma.config'));
 
 module.exports = function(config) {
   masterConf(config, {
-    projectPath: projectPath,
-    // singleRun: true,
-    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
-    testFiles: [
-      'assets/js/fsModules.core/ngParser/assembly.json',
-      'assets/js/fsModules.core/assembly.json',
-      'assets/js/fsPerson/assembly.json',
+    basePath: basePath,
+    files: [
+      'dist/components/hf/assets/js/fs/fs.js',
+      'dist/modules/fsModules.core/ngParser/ngParser.js',
+      'dist/modules/fsModules.core/fsModules.core.js',
+      'dist/modules/fsPerson/fsPerson.js',
 
-      'assets/js/fsModules.core/test/*Test.js',
-      'assets/js/fsPerson/test/*Test.js'
-    ]
+      'assets/modules/fsModules.core/test/*Test.js',
+      'assets/modules/fsPerson/test/*Test.js'
+    ],
+    frameworks: [ 'chai' ],
+    browsers: [ 'PhantomJS' ],
+    // browsers: ['Chrome', 'Firefox', 'Safari', 'PhantomJS'],
+    // singleRun: true,
+
+    reporters: ['dots']
   });
 }

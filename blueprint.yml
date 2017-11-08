@@ -11,21 +11,3 @@ build:
   heroku_stack: cedar-14
   test_location: local
   full_npm_install: true
-
-validate:
-- type: Post-Integrate v1_0
-  tests:
-  - name: validate-acceptance
-    test_type: npm
-    validation_systems:
-    - int
-
-deploy:
-  int:
-    fs-modules: &APP_DEFAULTS     #Service Name === {app in package.json}
-      type: Heroku v1_0
-      location: development-fh5-useast1-heroku
-
-deliver:
-  deploy_order:
-  - int

@@ -7,7 +7,7 @@ version: 1.0 # Blueprint Schema Version
 name: frontier-fs-modules
 build:
 - name: npm-build
-  type: Npm-Heroku v1_0
+  type: npm
   heroku_stack: cedar-14
   test_location: local
   full_npm_install: true

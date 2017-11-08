@@ -8,6 +8,5 @@ name: frontier-fs-modules
 build:
 - name: npm-build
   type: npm
-  heroku_stack: cedar-14
   test_location: local
   full_npm_install: true

@@ -1,8 +1,13 @@
-version: 0.3 # Blueprint Schema Version
-app:
-  name: frontier-fs-modules
-  build:
-    type: npm
-    npm_options:
-      full_npm_install: true
-      tests: local
+#
+# © 2017 by Intellectual Reserve, Inc. All rights reserved.
+# This notice may not be removed.
+#
+
+version: 1.0 # Blueprint Schema Version
+name: frontier-fs-modules
+build:
+- name: npm-build
+  type: Npm-Heroku v1_0
+  heroku_stack: cedar-14
+  test_location: local
+  full_npm_install: true

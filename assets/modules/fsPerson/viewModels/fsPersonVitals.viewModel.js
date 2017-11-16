@@ -48,7 +48,11 @@ function fsPersonVitalsViewModel(scope) {
 
 // OFT-66060 - https://almtools.ldschurch.org/fhjira/browse/OFT-66060
 // Need to pass in the parents and spouse to the person card to get the correct ordinances and to the person page link to show the correct family
-  scope.personPageLink = "/tree/#view=ancestor&person=" + scope.person.id + ((scope.options.spouse)? "&spouse=" + scope.options.spouse: "") + ((scope.options.father || scope.options.mother)? "&parents=" + (scope.options.father || "UNKNOWN") + "_" + (scope.options.mother || "UNKNOWN"): "");
+  var params = ((scope.options.spouse)? "&spouse=" + scope.options.spouse: "") + ((scope.options.father || scope.options.mother)? "&parents=" + (scope.options.father || "UNKNOWN") + "_" + (scope.options.mother || "UNKNOWN"): "");
+  scope.personPageLink = "/tree/person/details/" + scope.person.id;
+  if(params) {
+    scope.personPageLink = scope.personPageLink + '?1=1' + params;
+  } 
 
   scope.openPersonCardData = JSON.stringify({
     "id": scope.person.id,

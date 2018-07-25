@@ -20,6 +20,11 @@ angular.module('ngFsModules')
 
       scope.$watch('person', function fsPersonPortraitWatchAction() {
         scope = fsPersonPortraitViewModel(scope);
+        // TW-1033 - In tree-port-pedigree's portraitService.js, FST.htmlEncodeObjectsStrings
+        // is HTML-encoding ampersands in portraitUrl. This hack replaces '&amp;' with '&'
+        if(scope.person.portraitUrl) {
+          scope.person.portraitUrl = scope.person.portraitUrl.replace(/&amp;/g, '&');
+        }
       });
     },
     compile: function(tElement, tAttrs) {

@@ -29,31 +29,30 @@
   "private": false,
   "dependencies": {},
   "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "bower": "^1.5.1",
     "chai": "~1.9.1",
-    "frontier-build-tools": "git+https://github.com/fs-webdev/frontier-build-tools.git",
+    "frontier-build-tools": "github:fs-webdev/frontier-build-tools",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-hub": "fs-webdev/gulp-hub#registry-init",
+    "hf": "github:fs-webdev/hf",
     "karma": "^0.13.10",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.1",
     "karma-coffee-preprocessor": "~0.1.3",
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "0.1.3",
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-safari-launcher": "^0.1.1",
-    "mocha": "~1.21.3",
-    "theme-engage": "git+https://github.com/fs-webdev/theme-engage.git#2.2.2",
-    "bower": "^1.5.1",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-hub": "fs-webdev/gulp-hub#registry-init",
-    "karma-chai": "^0.1.0",
-    "gulp-babel": "^6.1.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-plugin-external-helpers-2": "^6.3.13"
+    "mocha": "~1.21.3"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.4.x"
+    "node": ">= 8"
   },
   "scripts": {
     "test": "bin/tests",
-    "postinstall": "bower install --config.interactive=false; gulp build; "
+    "postinstall": "bower install --config.interactive=false && gulp build"
   }
 }

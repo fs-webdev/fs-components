@@ -1,4 +1,5 @@
-var gulp = require('gulp');
+const gulp = require('gulp');
+const path = require('path');
 
 // your gulp tasks here
 
@@ -8,13 +9,13 @@ var gulp = require('gulp');
 
 
 // create a shared registry between the master gulpfile and your gulpfile
-var configure = require('./node_modules/frontier-build-tools/plugins/configure-registry.js');
+const configure = require('frontier-build-tools/plugins/configure-registry');
 gulp.registry(configure({
-  assetManifest: require('path').resolve(process.cwd(), './asset.manifest.json')
+
 }));
 
 // register the master gulpfile with gulp. This MUST be declared after all your gulp tasks
 // to be able to run multiple gulp tasks of the same name
-var HubRegistry = require('gulp-hub');
-var hub = new HubRegistry(['./node_modules/frontier-build-tools/gulpfile.js']);
+const HubRegistry = require('gulp-hub');
+const hub = new HubRegistry([path.relative(__dirname, require.resolve('frontier-build-tools/gulpfile.js'))]);
 gulp.registry(hub);

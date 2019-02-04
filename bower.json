@@ -17,13 +17,15 @@
   },
   "devDependencies": {
     "angular": "~1.2.32",
-    "angular": "~1.2.32",
     "angular-animate": "~1.2.32",
     "angular-mocks": "~1.2.32",
     "angular-sanitize": "~1.2.32",
-    "hf": "git+https://github.com/fs-webdev/hf.git#2.4.5",
+    "hf": "fs-webdev/hf#~2.18.4",
     "inject": "^0.7.2",
     "jquery-ui": "jqueryui#1.10.4"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "fs-styles": "^1.x.x"
+  }
 }

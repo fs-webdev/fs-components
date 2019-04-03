@@ -533,7 +533,7 @@ describe('fsPerson', function () {
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
-      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&spouse=SPOUSE-ID&parents=FATHER-ID_MOTHER-ID');
+      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/person/details/1234-567?1=1&spouse=SPOUSE-ID&parents=FATHER-ID_MOTHER-ID');
       expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","fatherId":"FATHER-ID","motherId":"MOTHER-ID","spouseId":"SPOUSE-ID","gender":"MALE"}');
     });
 
@@ -549,7 +549,7 @@ describe('fsPerson', function () {
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
-      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&parents=FATHER-ID_UNKNOWN');
+      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/person/details/1234-567?1=1&parents=FATHER-ID_UNKNOWN');
       expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","fatherId":"FATHER-ID","gender":"MALE"}');
     });
 
@@ -565,7 +565,7 @@ describe('fsPerson', function () {
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
-      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&spouse=SPOUSE-ID');
+      expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/person/details/1234-567?1=1&spouse=SPOUSE-ID');
       expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","name":"John Doe","spouseId":"SPOUSE-ID","gender":"MALE"}');
     });
 

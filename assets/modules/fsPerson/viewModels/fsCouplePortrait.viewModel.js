@@ -9,11 +9,5 @@ function fsCouplePortraitViewModel(scope) {
   scope.spouse1 = scope.spouse1 || {};
   scope.spouse2 = scope.spouse2 || {};
   scope.options = scope.options || {};
-
-  if(!FS || !FS.showEx || !FS.showEx('spaEx')) { 
-    scope.husband = scope.husband || {};
-    scope.wife = scope.wife || {};
-  }
-
   return scope;
 }

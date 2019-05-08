@@ -61,12 +61,12 @@ var noIdPerson = fsModules.extend({}, personObj, {id: null});
 var noNameConclusionPerson = fsModules.extend({}, personObj, {nameConclusion: null});
 var noPortraitPerson = fsModules.extend({}, personObj, {portraitUrl: null});
 var parentsAndSpousePerson = fsModules.extend({}, personObj, {
-    fatherId: "FATHER-ID",
-    motherId: "MOTHER-ID",
+    parent1Id: "FATHER-ID",
+    parent2Id: "MOTHER-ID",
     spouseId: "SPOUSE-ID"
 });
 var onlyOneParentPerson = fsModules.extend({}, personObj, {
-    fatherId: "FATHER-ID"
+    parent1Id: "FATHER-ID"
 });
 var onlySpousePerson = fsModules.extend({}, personObj, {
     spouseId: "SPOUSE-ID"
@@ -523,36 +523,36 @@ describe('fsPerson', function () {
       expect(title).to.equal('Angelo "Snaps" Provolone\n1900-1960 • 1234-567');
     });
 
-    it('should include father, mother and spouse ID\'s in scope.personPageLink and data-cmd-data', function() {
+    it('should include parent1, parent2 and spouse ID\'s in scope.personPageLink and data-cmd-data', function() {
       if (isAngularTest) {
         $scope.person = parentsAndSpousePerson;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, father: \'FATHER-ID\', mother: \'MOTHER-ID\', spouse: \'SPOUSE-ID\'}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, parent1: \'FATHER-ID\', parent2: \'MOTHER-ID\', spouse: \'SPOUSE-ID\'}"></fs-person-vitals>');
       }
       else {
-        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true, father: "FATHER-ID", mother: "MOTHER-ID", spouse: "SPOUSE-ID"});
+        $template = fsModules.fsPersonVitals(parentsAndSpousePerson, {openPersonCard: true, parent1: "FATHER-ID", parent2: "MOTHER-ID", spouse: "SPOUSE-ID"});
       }
 
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
       expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&spouse=SPOUSE-ID&parents=FATHER-ID_MOTHER-ID');
-      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","fatherId":"FATHER-ID","motherId":"MOTHER-ID","spouseId":"SPOUSE-ID","gender":"MALE"}');
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","parent1Id":"FATHER-ID","parent2Id":"MOTHER-ID","spouseId":"SPOUSE-ID","gender":"MALE"}');
     });
 
     it('should handle single parents when setting parent ID\'s in scope.personPageLink and data-cmd-data', function() {
       if (isAngularTest) {
         $scope.person = onlyOneParentPerson;
-        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, father: \'FATHER-ID\'}"></fs-person-vitals>');
+        compileDirective('<fs-person-vitals data-person="person" data-config="{openPersonCard: true, parent1: \'FATHER-ID\'}"></fs-person-vitals>');
       }
       else {
-        $template = fsModules.fsPersonVitals(onlyOneParentPerson, {openPersonCard: true, father: "FATHER-ID"});
+        $template = fsModules.fsPersonVitals(onlyOneParentPerson, {openPersonCard: true, parent1: "FATHER-ID"});
       }
 
       var personPageLink = $template.querySelector('.fs-person-vitals__link').href;
       var dataCmdData = $template.querySelector('.fs-person-vitals__link').getAttribute("data-cmd-data");
 
       expect(personPageLink, 'scope.personPageLink set incorrectly').to.contain('/tree/#view=ancestor&person=1234-567&parents=FATHER-ID_UNKNOWN');
-      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","fatherId":"FATHER-ID","gender":"MALE"}');
+      expect(dataCmdData, 'data-cmd-data set incorrectly').to.equal('{"id":"1234-567","isLiving":false,"name":"John Doe","parent1Id":"FATHER-ID","gender":"MALE"}');
     });
 
     it('should handle just a spouse when setting spouse ID in scope.personPageLink and data-cmd-data', function() {
@@ -738,7 +738,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-info data-husband="person" data-wife="person2"></fs-couple-info>');
+        compileDirective('<fs-couple-info data-spouse1="person" data-spouse2="person2"></fs-couple-info>');
       }
       else {
         $template = fsModules.fsCoupleInfo(person, person2);
@@ -753,14 +753,14 @@ describe('fsPerson', function () {
 
       expect(personCard.length).to.equal(0);
 
-      // test husband data
+      // test spouse1 data
       expect(fullNames[0].textContent).to.equal(person.name);
       expect(givenNames[0].textContent).to.equal('John');
       expect(familyNames[0].textContent).to.equal('Doe');
       expect(pids[0].textContent).to.equal(person.id);
       expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
 
-      // test wife data
+      // test spouse2 data
       expect(fullNames[1].textContent).to.equal(person2.name);
       expect(givenNames[1].textContent).to.equal('Jane');
       expect(familyNames[1].textContent).to.equal('Doe');
@@ -772,7 +772,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-info data-husband="person" data-wife="person2" data-config="{hideId: true}"></fs-couple-info>');
+        compileDirective('<fs-couple-info data-spouse1="person" data-spouse2="person2" data-config="{hideId: true}"></fs-couple-info>');
       }
       else {
         $template = fsModules.fsCoupleInfo(person, person2, {hideId: true});
@@ -796,13 +796,13 @@ describe('fsPerson', function () {
       expect(personCard.length).to.equal(0);
       expect(pids.length).to.equal(0);
 
-      // test husband data
+      // test spouse1 data
       expect(fullNames[0].textContent).to.equal(person.name);
       expect(givenNames[0].textContent).to.equal('John');
       expect(familyNames[0].textContent).to.equal('Doe');
       expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
 
-      // test wife data
+      // test spouse2 data
       expect(fullNames[1].textContent).to.equal(person2.name);
       expect(givenNames[1].textContent).to.equal('Jane');
       expect(familyNames[1].textContent).to.equal('Doe');
@@ -823,7 +823,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-portrait data-husband="person" data-wife="person2"></fs-couple-portrait>');
+        compileDirective('<fs-couple-portrait data-spouse1="person" data-spouse2="person2"></fs-couple-portrait>');
       }
       else {
         $template = fsModules.fsCouplePortrait(person, person2);
@@ -839,7 +839,7 @@ describe('fsPerson', function () {
 
       expect(personCard.length).to.equal(0);
 
-      // test husband data
+      // test spouse1 data
       expect(fullNames[0].textContent).to.equal(person.name);
       expect(givenNames[0].textContent).to.equal('John');
       expect(familyNames[0].textContent).to.equal('Doe');
@@ -847,7 +847,7 @@ describe('fsPerson', function () {
       expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
       expect(birthPlaces[0]).to.be.a('undefined');
 
-      // test wife data
+      // test spouse2 data
       expect(fullNames[1].textContent).to.equal(person2.name);
       expect(givenNames[1].textContent).to.equal('Jane');
       expect(familyNames[1].textContent).to.equal('Doe');
@@ -860,7 +860,7 @@ describe('fsPerson', function () {
       if (isAngularTest) {
         $scope.person = person;
         $scope.person2 = person2;
-        compileDirective('<fs-couple-portrait data-husband="person" data-wife="person2" data-config="{hideId: true}"></fs-couple-portrait>');
+        compileDirective('<fs-couple-portrait data-spouse1="person" data-spouse2="person2" data-config="{hideId: true}"></fs-couple-portrait>');
       }
       else {
         $template = fsModules.fsCouplePortrait(person, person2, {hideId: true});
@@ -877,14 +877,14 @@ describe('fsPerson', function () {
       expect(personCards.length).to.equal(0);
       expect(pids.length).to.equal(0);
 
-      // test husband data
+      // test spouse1 data
       expect(fullNames[0].textContent).to.equal(person.name);
       expect(givenNames[0].textContent).to.equal('John');
       expect(familyNames[0].textContent).to.equal('Doe');
       expect(lifeSpans[0].textContent).to.equal(person.lifeSpan);
       expect(birthPlaces[0]).to.be.an('undefined');
 
-      // test wife data
+      // test spouse2 data
       expect(fullNames[1].textContent).to.equal(person2.name);
       expect(givenNames[1].textContent).to.equal('Jane');
       expect(familyNames[1].textContent).to.equal('Doe');

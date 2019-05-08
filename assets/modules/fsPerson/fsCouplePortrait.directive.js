@@ -29,10 +29,7 @@
  */
 fsModules.registerDirective('fsCouplePortrait', ['spouse1', 'spouse2', 'options', function(spouse1, spouse2, options) {
   var data = {spouse1: spouse1, spouse2: spouse2, options: options};
-  if(!FS || !FS.showEx || !FS.showEx('spaEx')) { 
-    data.husband = spouse1;
-    data.wife = spouse2;
-  }
+
   scope = fsCouplePortraitViewModel(data);
   // convert the angular template
   var templateStr = templateList.fsCouplePortrait;

@@ -1,8 +1,8 @@
 /**
  * Translate person and options data into template variables.
  * @param {object} scope - The object to use as the scope.
- * @property {string} [scope.options.father] - Either passed through in the template config, or created from the person.fatherId property
- * @property {string} [scope.options.mother] - Either passed through in the template config, or created from the person.motherId property
+ * @property {string} [scope.options.parent1] - Either passed through in the template config, or created from the person.parent1Id property
+ * @property {string} [scope.options.parent2] - Either passed through in the template config, or created from the person.parent2Id property
  * @property {string} [scope.options.spouse] - Either passed through in the template config, or created from the person.spouseId property
  * @returns {object} The scope object to use in the template.
  *
@@ -10,15 +10,15 @@
  */
 function fsPersonVitalsViewModel(scope) {
   if (!scope.person || Object.getOwnPropertyNames(scope.person).length === 0) {
-    delete scope.options.father;
-    delete scope.options.mother;
+    delete scope.options.parent1;
+    delete scope.options.parent2;
     delete scope.options.spouse;
   }
 
   scope.person = scope.person || {};
   scope.options = scope.options || {};
-  scope.options.father = scope.options.father || scope.person.fatherId || undefined;
-  scope.options.mother = scope.options.mother || scope.person.motherId || undefined;
+  scope.options.parent1 = scope.options.parent1 || scope.person.parent1Id || undefined;
+  scope.options.parent2 = scope.options.parent2 || scope.person.parent2Id || undefined;
   scope.options.spouse = scope.options.spouse || scope.person.spouseId || undefined;
 
   scope.name = '';
@@ -48,7 +48,7 @@ function fsPersonVitalsViewModel(scope) {
 
 // OFT-66060 - https://almtools.ldschurch.org/fhjira/browse/OFT-66060
 // Need to pass in the parents and spouse to the person card to get the correct ordinances and to the person page link to show the correct family
-  var params = ((scope.options.spouse)? "&spouse=" + scope.options.spouse: "") + ((scope.options.father || scope.options.mother)? "&parents=" + (scope.options.father || "UNKNOWN") + "_" + (scope.options.mother || "UNKNOWN"): "");
+  var params = ((scope.options.spouse)? "&spouse=" + scope.options.spouse: "") + ((scope.options.parent1 || scope.options.parent2)? "&parents=" + (scope.options.parent1 || "UNKNOWN") + "_" + (scope.options.parent2 || "UNKNOWN"): "");
   scope.personPageLink = "/tree/person/details/" + scope.person.id;
   if(params) {
     scope.personPageLink = scope.personPageLink + '?1=1' + params;
@@ -58,8 +58,8 @@ function fsPersonVitalsViewModel(scope) {
     "id": scope.person.id,
     "isLiving": scope.person.isLiving,
     "name": scope.person.name,
-    "fatherId": scope.options.father,
-    "motherId": scope.options.mother,
+    "parent1Id": scope.options.parent1,
+    "parent2Id": scope.options.parent2,
     "spouseId": scope.options.spouse,
     "gender": scope.person.gender,
     "linksInNewTab": scope.options.linksInNewTab

@@ -39,7 +39,7 @@ fsModules.registerDirective('fsPersonVitals', ['person', 'options', function(per
   // This implies that Angular tries to parse the entire DOM tree before it
   // does any ng calculations.
   if (scope.options.showParents && scope.person.parents) {
-    var parents = this.fsCoupleInfo(scope.person.parents.father, scope.person.parents.mother, {showParents: false, iconSize: 'small'});
+    var parents = this.fsCoupleInfo(scope.person.parents.parent1, scope.person.parents.parent2, {showParents: false, iconSize: 'small'});
     template.querySelector('.fs-person__fs-person-parents').appendChild(parents);
   }
 

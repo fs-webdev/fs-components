@@ -5,56 +5,27 @@
  */
 angular.module('ngFsModules')
        .directive('fsCoupleInfo', function() {
-  if(FS && FS.showEx && FS.showEx('spaEx')) {         
-    return {
-      restrict: 'E',
-      replace: true,
-      template: templateList.fsCoupleInfo,
-      scope: {
-        spouse1: '=',
-        spouse2: '=',
-        config: '&'
-      },
-      link: function(scope, element, attrs) {
-        scope.options = scope.config() || {};
+  return {
+    restrict: 'E',
+    replace: true,
+    template: templateList.fsCoupleInfo,
+    scope: {
+      spouse1: '=',
+      spouse2: '=',
+      config: '&'
+    },
+    link: function(scope, element, attrs) {
+      scope.options = scope.config() || {};
+      scope = fsCoupleInfoViewModel(scope);
 
+      scope.$watch('person', function fsCoupleInfoWatchAction() {
         scope = fsCoupleInfoViewModel(scope);
-
-        scope.$watch('person', function fsCoupleInfoWatchAction() {
-          scope = fsCoupleInfoViewModel(scope);
-        });
-      },
-      compile: function(tElement, tAttrs) {
-        // since data-config must be a string, we need to append the attrs string to fs-person-gender
-        tElement.find('fs-person-gender').attr('data-config', tAttrs.config);
-        return this.link;
-      }
-    };
-  } else {
-    return {
-      restrict: 'E',
-      replace: true,
-      template: templateList.fsCoupleInfo,
-      scope: {
-        husband: '=',
-        wife: '=',
-        config: '&'
-      },
-      link: function(scope, element, attrs) {
-        scope.options = scope.config() || {};
-  
-        scope = fsCoupleInfoViewModel(scope);
-  
-        scope.$watch('person', function fsCoupleInfoWatchAction() {
-          scope = fsCoupleInfoViewModel(scope);
-        });
-      },
-      compile: function(tElement, tAttrs) {
-        // since data-config must be a string, we need to append the attrs string to fs-person-gender
-        tElement.find('fs-person-gender').attr('data-config', tAttrs.config);
-        return this.link;
-      }
-    };
-  
-  }
+      });
+    },
+    compile: function(tElement, tAttrs) {
+      // since data-config must be a string, we need to append the attrs string to fs-person-gender
+      tElement.find('fs-person-gender').attr('data-config', tAttrs.config);
+      return this.link;
+    }
+  };
 });

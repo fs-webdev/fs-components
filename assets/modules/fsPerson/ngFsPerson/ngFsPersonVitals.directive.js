@@ -31,7 +31,7 @@ angular.module('ngFsModules')
         // This implies that Angular tries to parse the entire DOM tree before it
         // does any ng calculations.
         if (scope.options.showParents && scope.person.parents) {
-          var parents = $compile('<fs-couple-info data-husband="person.parents.father" data-wife="person.parents.mother" data-config="{showParents: false, iconSize: \'small\'}"></fs-couple-info>')(scope);
+          var parents = $compile('<fs-couple-info data-spouse1="person.parents.parent1" data-spouse2="person.parents.parent2" data-config="{showParents: false, iconSize: \'small\'}"></fs-couple-info>')(scope);
           element.find('.fs-person__fs-person-parents').append(parents);
         }
 

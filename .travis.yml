@@ -7,9 +7,8 @@ branches:
     - master
 # Cache bower dependencies for faster/network error-tolerant builds (provided cache invalidation occurs as expected)
 cache:
-  directories:
-  - components # bower packages
-  - node_modules # node packages
+  npm: false
+  directories: null
 dist: trusty
 language: node_js
 node_js:

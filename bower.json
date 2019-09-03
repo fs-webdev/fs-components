@@ -20,7 +20,7 @@
     "angular-animate": "~1.2.32",
     "angular-mocks": "~1.2.32",
     "angular-sanitize": "~1.2.32",
-    "hf": "fs-webdev/hf#~2.18.4",
+    "hf": "fs-webdev/hf#master",
     "inject": "^0.7.2",
     "jquery-ui": "jqueryui#1.10.4"
   },

@@ -44,8 +44,8 @@
     "theme-engage": "git+https://github.com/fs-webdev/theme-engage.git#2.2.2"
   },
   "engines": {
-    "node": "6.11.x",
-    "npm": "1.4.x"
+    "node": "10.x.x",
+    "npm": "6.x.x"
   },
   "scripts": {
     "test": "bin/tests"

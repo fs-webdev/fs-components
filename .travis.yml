@@ -1,6 +1,6 @@
 # Create .netrc for private repo install
 before_install:
-- echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" >> ~/.netrc
+- echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > ~/.netrc
 # Branch whitelist
 branches:
   only:
